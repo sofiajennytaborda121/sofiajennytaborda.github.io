@@ -87,8 +87,8 @@
     }
 
     .logo-circle {
-      width: 52px;
-      height: 52px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: linear-gradient(135deg, #00d2ff, #004cff);
       border: 2px solid #ffffff;
@@ -140,27 +140,37 @@
       flex-shrink: 0;
     }
 
+    /* Full, clear header buttons */
     .nav-actions {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 10px;
+      flex: 1;
+      justify-content: flex-end;
     }
 
     .nav-btn {
-      padding: 9px 14px;
-      font-size: 13px;
-      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 900;
+      border-radius: 12px;
+      min-width: 112px;
+      text-align: center;
+      white-space: nowrap;
+      border: 2px solid rgba(255, 255, 255, 0.85);
     }
 
     .lang-select {
-      background: rgba(3, 18, 52, 0.92);
+      background: rgba(3, 18, 52, 0.95);
       color: #ffffff;
-      border: 1.5px solid rgba(130, 215, 255, 0.8);
-      border-radius: 10px;
-      padding: 9px 12px;
-      font-size: 13px;
+      border: 2px solid rgba(160, 228, 255, 0.85);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: 14px;
+      font-weight: 800;
       outline: none;
+      min-width: 145px;
     }
 
     .hero-box {
@@ -338,10 +348,22 @@
       font-weight: 800;
     }
 
+    /* Crisp White Divider Line after Folder Buttons */
+    .white-divider {
+      width: 100%;
+      height: 3px;
+      background: #ffffff;
+      border: none;
+      border-radius: 999px;
+      margin: 30px 0 22px 0;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.85);
+    }
+
+    /* Compact Public Uploads Grid */
     .mini-grid {
-      margin-top: 16px;
+      margin-top: 14px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
       gap: 14px;
     }
 
@@ -352,14 +374,16 @@
       padding: 10px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       gap: 8px;
       cursor: pointer;
-      transition: transform 0.18s ease, border-color 0.18s ease;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
     }
 
     .mini-card:hover {
       transform: translateY(-3px);
       border-color: #ffffff;
+      box-shadow: 0 8px 22px rgba(0, 195, 255, 0.5);
     }
 
     .mini-thumb {
@@ -380,7 +404,7 @@
     }
 
     .mini-title {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
       color: #ffffff;
     }
@@ -389,6 +413,14 @@
       font-size: 14px;
       color: #7ee3ff;
       font-weight: 900;
+    }
+
+    .mini-buy-btn {
+      width: 100%;
+      padding: 9px 10px;
+      font-size: 12.5px;
+      font-weight: 900;
+      border-radius: 10px;
     }
 
     .panel-box {
@@ -557,6 +589,32 @@
       font-size: 14px;
     }
 
+    /* Official Footer */
+    .site-footer {
+      margin-top: 34px;
+      padding: 20px 24px;
+      text-align: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      border-radius: 20px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .footer-tagline {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 0.4px;
+      text-shadow: 0 2px 12px rgba(0, 185, 255, 0.8);
+    }
+
+    .footer-sub {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #bfeaff;
+    }
+
     .hidden {
       display: none !important;
     }
@@ -564,6 +622,9 @@
     @media (max-width: 1024px) {
       .folders-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-actions {
+        justify-content: flex-start;
       }
     }
 
@@ -575,6 +636,15 @@
 
       .top-bar {
         padding: 12px;
+      }
+
+      .nav-btn {
+        flex: 1 1 calc(50% - 10px);
+        min-width: 0;
+      }
+
+      .lang-select {
+        width: 100%;
       }
 
       .container {
@@ -603,10 +673,10 @@
       </div>
 
       <div class="nav-actions">
-        <button class="nav-btn" onclick="goHome()" data-i18n="nav_home">Home</button>
-        <button class="nav-btn" onclick="scrollToFolders()" data-i18n="nav_folders">All Folders</button>
-        <button class="nav-btn" onclick="openFolder('store')" data-i18n="nav_store">Store</button>
-        <button class="nav-btn" onclick="openFolder('academy')" data-i18n="nav_academy">Academy</button>
+        <button type="button" class="nav-btn" onclick="goHome()" data-i18n="nav_home">Home</button>
+        <button type="button" class="nav-btn" onclick="scrollToFolders()" data-i18n="nav_folders">All Folders</button>
+        <button type="button" class="nav-btn" onclick="openFolder('store')" data-i18n="nav_store">Store</button>
+        <button type="button" class="nav-btn" onclick="openFolder('academy')" data-i18n="nav_academy">Academy</button>
         <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)" aria-label="Language">
           <option value="en">English</option>
           <option value="es">Español (Spanish)</option>
@@ -661,19 +731,16 @@
 
       <section class="folders-grid" id="foldersGrid"></section>
 
-      <section class="section-bar" style="margin-top: 28px;">
-        <div class="section-bar-title">
-          <span>✨</span>
-          <span data-i18n="latest_uploads_title">Latest Store, Lucky Draw &amp; Academy Uploads</span>
-        </div>
-      </section>
+      <!-- White Divider Line Right After Folder Buttons -->
+      <hr class="white-divider" />
+
       <section class="mini-grid" id="miniUploadsGrid"></section>
     </main>
 
     <section id="innerView" class="panel-box hidden">
       <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; margin-bottom:16px;">
-        <button onclick="goHome()" data-i18n="back_home_btn">← Back to Home</button>
-        <button id="alreadyPaidTopBtn" class="hidden" onclick="toggleVipLoginBox()" data-i18n="already_paid_btn">
+        <button type="button" onclick="goHome()" data-i18n="back_home_btn">← Back to Home</button>
+        <button type="button" id="alreadyPaidTopBtn" class="hidden" onclick="toggleVipLoginBox()" data-i18n="already_paid_btn">
           🔑 Already Paid? Enter Gmail
         </button>
       </div>
@@ -682,6 +749,13 @@
       <div id="innerContent"></div>
       <div id="innerStatus" class="status-banner hidden"></div>
     </section>
+
+    <footer class="site-footer">
+      <div class="footer-tagline" data-i18n="footer_tagline">
+        آپ کا بھروسہ ہماری پہچان ہے — Sofia Jenny Taborda
+      </div>
+      <div class="footer-sub">© Sofia Jenny Taborda Official ✓</div>
+    </footer>
   </div>
 
   <script>
@@ -713,7 +787,6 @@
         hero_subtitle: "Exclusive Folders, Official Store, Lucky Draw, VIP Access & AI Social Media Academy.",
         gift_mega_btn: "🎁 SEND A $10 GIFT TO SOFIA JENNY TABORDA",
         all_folders_title: "Sofia Jenny Taborda All Folders",
-        latest_uploads_title: "Latest Store, Lucky Draw & Academy Uploads",
         open_folder: "Open Folder", back_home_btn: "← Back to Home",
         already_paid_btn: "🔑 Already Paid? Enter Gmail",
         pay_paypal_card: "💳 PAY NOW WITH PAYPAL / CARD / BANK ($ USD)",
@@ -721,7 +794,8 @@
         send_free_msg: "Send Free Message",
         auto_msg_reply: "Thank you for messaging Sofia Jenny Taborda! Book your $80 meeting or send a $10 gift below.",
         gift_10_btn: "🎁 Send $10 Gift to Sofia Jenny Taborda",
-        meet_80_btn: "💎 Book Meeting with Sofia Jenny Taborda ($80 USD)"
+        meet_80_btn: "💎 Book Meeting with Sofia Jenny Taborda ($80 USD)",
+        footer_tagline: "آپ کا بھروسہ ہماری پہچان ہے — Sofia Jenny Taborda"
       },
       es: {
         nav_home: "Inicio", nav_folders: "Todas las Carpetas", nav_store: "Tienda", nav_academy: "Academia",
@@ -729,7 +803,6 @@
         hero_subtitle: "Carpetas Exclusivas, Tienda Oficial, Sorteo, Acceso VIP y Academia de IA y Redes Sociales.",
         gift_mega_btn: "🎁 ENVIAR UN REGALO DE $10 A SOFIA JENNY TABORDA",
         all_folders_title: "Todas las Carpetas de Sofia Jenny Taborda",
-        latest_uploads_title: "Últimas Publicaciones de Tienda, Sorteo y Academia",
         open_folder: "Abrir Carpeta", back_home_btn: "← Volver al Inicio",
         already_paid_btn: "🔑 ¿Ya Pagaste? Ingresa tu Gmail",
         pay_paypal_card: "💳 PAGAR CON PAYPAL / TARJETA / BANCO ($ USD)",
@@ -737,7 +810,8 @@
         send_free_msg: "Enviar Mensaje Gratis",
         auto_msg_reply: "¡Gracias por escribirle a Sofia Jenny Taborda! Reserva tu encuentro de $80 o envía un regalo de $10.",
         gift_10_btn: "🎁 Enviar Regalo de $10 a Sofia Jenny Taborda",
-        meet_80_btn: "💎 Conocer a Sofia Jenny Taborda ($80 USD)"
+        meet_80_btn: "💎 Conocer a Sofia Jenny Taborda ($80 USD)",
+        footer_tagline: "Tu confianza es nuestra identidad — Sofia Jenny Taborda"
       },
       "zh-CN": {
         nav_home: "首页", nav_folders: "全部文件夹", nav_store: "官方商店", nav_academy: "学院",
@@ -745,7 +819,6 @@
         hero_subtitle: "专属文件夹、官方商店、幸运抽奖、VIP权限以及AI社交媒体学院。",
         gift_mega_btn: "🎁 向 SOFIA JENNY TABORDA 发送 $10 礼物",
         all_folders_title: "Sofia Jenny Taborda 全部文件夹",
-        latest_uploads_title: "最新商店、抽奖与学院内容",
         open_folder: "打开文件夹", back_home_btn: "← 返回首页",
         already_paid_btn: "🔑 已付款？输入 Gmail",
         pay_paypal_card: "💳 使用 PAYPAL / 银行卡 / 银行支付 ($ USD)",
@@ -753,7 +826,8 @@
         send_free_msg: "发送免费消息",
         auto_msg_reply: "感谢给 Sofia Jenny Taborda 发消息！请在下方预约 $80 见面或发送 $10 礼物。",
         gift_10_btn: "🎁 向 Sofia Jenny Taborda 发送 $10 礼物",
-        meet_80_btn: "💎 与 Sofia Jenny Taborda 见面 ($80 USD)"
+        meet_80_btn: "💎 与 Sofia Jenny Taborda 见面 ($80 USD)",
+        footer_tagline: "您的信任是我们的标志 — Sofia Jenny Taborda"
       },
       ur: {
         nav_home: "ہوم", nav_folders: "تمام فولڈرز", nav_store: "اسٹور", nav_academy: "اکیڈمی",
@@ -761,7 +835,6 @@
         hero_subtitle: "خاص فولڈرز، آفیشل اسٹور، لکی ڈرا، VIP ایکسیس اور AI سوشل میڈیا اکیڈمی۔",
         gift_mega_btn: "🎁 صوفیہ جینی تبوردا کو $10 گفٹ بھیجیں",
         all_folders_title: "صوفیہ جینی تبوردا کے تمام فولڈرز",
-        latest_uploads_title: "اسٹور، لکی ڈرا اور اکیڈمی کے نئے اپلوڈز",
         open_folder: "فولڈر کھولیں", back_home_btn: "← ہوم پیج پر جائیں",
         already_paid_btn: "🔑 پہلے پیمنٹ کر چکے ہیں؟ Gmail لکھیں",
         pay_paypal_card: "💳 پے پال / کارڈ / بینک سے ڈالر ($) میں پیمنٹ کریں",
@@ -769,7 +842,8 @@
         send_free_msg: "فری میسج بھیجیں",
         auto_msg_reply: "صوفیہ جینی تبوردا کو میسج کرنے کا شکریہ! نیچے سے $80 میں ملاقات بک کریں یا $10 گفٹ بھیجیں۔",
         gift_10_btn: "🎁 صوفیہ جینی تبوردا کو $10 گفٹ بھیجیں",
-        meet_80_btn: "💎 صوفیہ جینی تبوردا سے ملاقات کریں ($80 USD)"
+        meet_80_btn: "💎 صوفیہ جینی تبوردا سے ملاقات کریں ($80 USD)",
+        footer_tagline: "آپ کا بھروسہ ہماری پہچان ہے — Sofia Jenny Taborda"
       },
       hi: {
         nav_home: "होम", nav_folders: "सभी फ़ोल्डर", nav_store: "स्टोर", nav_academy: "अकादमी",
@@ -777,7 +851,6 @@
         hero_subtitle: "विशेष फ़ोल्डर, ऑफ़िशियल स्टोर, लकी ड्रॉ, VIP एक्सेस और AI सोशल मीडिया अकादमी।",
         gift_mega_btn: "🎁 SOFIA JENNY TABORDA को $10 गिफ्ट भेजें",
         all_folders_title: "Sofia Jenny Taborda के सभी फ़ोल्डर",
-        latest_uploads_title: "नए स्टोर, लकी ड्रॉ और अकादमी अपलोड",
         open_folder: "फ़ोल्डर खोलें", back_home_btn: "← होम पर जाएं",
         already_paid_btn: "🔑 पहले भुगतान कर चुके हैं? Gmail दर्ज करें",
         pay_paypal_card: "💳 PAYPAL / कार्ड / बैंक से ($ USD) भुगतान करें",
@@ -785,7 +858,8 @@
         send_free_msg: "फ़्री मैसेज भेजें",
         auto_msg_reply: "Sofia Jenny Taborda को मैसेज करने के लिए धन्यवाद! नीचे से $80 में मीटिंग बुक करें या $10 गिफ्ट भेजें।",
         gift_10_btn: "🎁 Sofia Jenny Taborda को $10 गिफ्ट भेजें",
-        meet_80_btn: "💎 Sofia Jenny Taborda से मिलें ($80 USD)"
+        meet_80_btn: "💎 Sofia Jenny Taborda से मिलें ($80 USD)",
+        footer_tagline: "आपका भरोसा हमारी पहचान है — Sofia Jenny Taborda"
       },
       pt: {
         nav_home: "Início", nav_folders: "Todas as Pastas", nav_store: "Loja", nav_academy: "Academia",
@@ -793,7 +867,6 @@
         hero_subtitle: "Pastas Exclusivas, Loja Oficial, Sorteio, Acesso VIP e Academia de IA e Redes Sociais.",
         gift_mega_btn: "🎁 ENVIAR PRESENTE DE $10 PARA SOFIA JENNY TABORDA",
         all_folders_title: "Todas as Pastas de Sofia Jenny Taborda",
-        latest_uploads_title: "Novidades da Loja, Sorteio e Academia",
         open_folder: "Abrir Pasta", back_home_btn: "← Voltar ao Início",
         already_paid_btn: "🔑 Já Pagou? Digite seu Gmail",
         pay_paypal_card: "💳 PAGAR COM PAYPAL / CARTÃO / BANCO ($ USD)",
@@ -801,7 +874,8 @@
         send_free_msg: "Enviar Mensagem Grátis",
         auto_msg_reply: "Obrigado por enviar mensagem para Sofia Jenny Taborda! Agende seu encontro de $80 ou envie $10 de presente.",
         gift_10_btn: "🎁 Enviar Presente de $10 para Sofia Jenny Taborda",
-        meet_80_btn: "💎 Conhecer Sofia Jenny Taborda ($80 USD)"
+        meet_80_btn: "💎 Conhecer Sofia Jenny Taborda ($80 USD)",
+        footer_tagline: "A sua confiança é a nossa identidade — Sofia Jenny Taborda"
       },
       fr: {
         nav_home: "Accueil", nav_folders: "Tous les Dossiers", nav_store: "Boutique", nav_academy: "Académie",
@@ -809,7 +883,6 @@
         hero_subtitle: "Dossiers Exclusifs, Boutique Officielle, Tirage au Sort, Accès VIP et Académie IA.",
         gift_mega_btn: "🎁 ENVOYER UN CADEAU DE 10$ À SOFIA JENNY TABORDA",
         all_folders_title: "Tous les Dossiers de Sofia Jenny Taborda",
-        latest_uploads_title: "Derniers Ajouts Boutique, Tirage & Académie",
         open_folder: "Ouvrir le Dossier", back_home_btn: "← Retour à l'Accueil",
         already_paid_btn: "🔑 Déjà Payé ? Entrez votre Gmail",
         pay_paypal_card: "💳 PAYER AVEC PAYPAL / CARTE / BANQUE ($ USD)",
@@ -817,7 +890,8 @@
         send_free_msg: "Envoyer un Message Gratuit",
         auto_msg_reply: "Merci d'avoir envoyé un message à Sofia Jenny Taborda ! Réservez votre rencontre à 80$ ou envoyez un cadeau de 10$.",
         gift_10_btn: "🎁 Envoyer un Cadeau de 10$ à Sofia Jenny Taborda",
-        meet_80_btn: "💎 Rencontrer Sofia Jenny Taborda ($80 USD)"
+        meet_80_btn: "💎 Rencontrer Sofia Jenny Taborda ($80 USD)",
+        footer_tagline: "Votre confiance est notre identité — Sofia Jenny Taborda"
       },
       de: {
         nav_home: "Start", nav_folders: "Alle Ordner", nav_store: "Shop", nav_academy: "Akademie",
@@ -825,7 +899,6 @@
         hero_subtitle: "Exklusive Ordner, Offizieller Shop, Verlosung, VIP-Zugang & KI-Social-Media-Akademie.",
         gift_mega_btn: "🎁 10$ GESCHENK AN SOFIA JENNY TABORDA SENDEN",
         all_folders_title: "Alle Ordner von Sofia Jenny Taborda",
-        latest_uploads_title: "Neueste Shop-, Gewinnspiel- & Akademie-Inhalte",
         open_folder: "Ordner Öffnen", back_home_btn: "← Zurück zur Startseite",
         already_paid_btn: "🔑 Schon Bezahlt? Gmail Eingeben",
         pay_paypal_card: "💳 MIT PAYPAL / KARTE / BANK ZAHLEN ($ USD)",
@@ -833,7 +906,8 @@
         send_free_msg: "Kostenlose Nachricht Senden",
         auto_msg_reply: "Danke für deine Nachricht an Sofia Jenny Taborda! Buche dein 80$-Treffen oder sende ein 10$-Geschenk.",
         gift_10_btn: "🎁 10$ Geschenk an Sofia Jenny Taborda Senden",
-        meet_80_btn: "💎 Sofia Jenny Taborda Treffen ($80 USD)"
+        meet_80_btn: "💎 Sofia Jenny Taborda Treffen ($80 USD)",
+        footer_tagline: "Ihr Vertrauen ist unsere Identität — Sofia Jenny Taborda"
       },
       it: {
         nav_home: "Home", nav_folders: "Tutte le Cartelle", nav_store: "Negozio", nav_academy: "Accademia",
@@ -841,7 +915,6 @@
         hero_subtitle: "Cartelle Esclusive, Negozio Ufficiale, Estrazione, Accesso VIP e Accademia AI.",
         gift_mega_btn: "🎁 INVIA UN REGALO DA $10 A SOFIA JENNY TABORDA",
         all_folders_title: "Tutte le Cartelle di Sofia Jenny Taborda",
-        latest_uploads_title: "Ultimi Caricamenti Negozio, Estrazione e Accademia",
         open_folder: "Apri Cartella", back_home_btn: "← Torna alla Home",
         already_paid_btn: "🔑 Hai Già Pagato? Inserisci Gmail",
         pay_paypal_card: "💳 PAGA CON PAYPAL / CARTA / BANCA ($ USD)",
@@ -849,7 +922,8 @@
         send_free_msg: "Invia Messaggio Gratuito",
         auto_msg_reply: "Grazie per aver scritto a Sofia Jenny Taborda! Prenota il tuo incontro da $80 o invia un regalo da $10.",
         gift_10_btn: "🎁 Invia Regalo da $10 a Sofia Jenny Taborda",
-        meet_80_btn: "💎 Incontra Sofia Jenny Taborda ($80 USD)"
+        meet_80_btn: "💎 Incontra Sofia Jenny Taborda ($80 USD)",
+        footer_tagline: "La vostra fiducia è la nostra identità — Sofia Jenny Taborda"
       },
       ru: {
         nav_home: "Главная", nav_folders: "Все Папки", nav_store: "Магазин", nav_academy: "Академия",
@@ -857,7 +931,6 @@
         hero_subtitle: "Эксклюзивные папки, официальный магазин, розыгрыш, VIP-доступ и академия ИИ.",
         gift_mega_btn: "🎁 ОТПРАВИТЬ ПОДАРОК $10 SOFIA JENNY TABORDA",
         all_folders_title: "Все Папки Sofia Jenny Taborda",
-        latest_uploads_title: "Новинки Магазина, Розыгрыша и Академии",
         open_folder: "Открыть Папку", back_home_btn: "← На Главную",
         already_paid_btn: "🔑 Уже Оплатили? Введите Gmail",
         pay_paypal_card: "💳 ОПЛАТИТЬ PAYPAL / КАРТОЙ / БАНКОМ ($ USD)",
@@ -865,7 +938,8 @@
         send_free_msg: "Отправить Бесплатное Сообщение",
         auto_msg_reply: "Спасибо за сообщение Sofia Jenny Taborda! Забронируйте встречу за $80 или отправьте подарок $10.",
         gift_10_btn: "🎁 Отправить Подарок $10 Sofia Jenny Taborda",
-        meet_80_btn: "💎 Встретиться с Sofia Jenny Taborda ($80 USD)"
+        meet_80_btn: "💎 Встретиться с Sofia Jenny Taborda ($80 USD)",
+        footer_tagline: "Ваше доверие — наша визитная карточка — Sofia Jenny Taborda"
       },
       ar: {
         nav_home: "الرئيسية", nav_folders: "جميع المجلدات", nav_store: "المتجر", nav_academy: "الأكاديمية",
@@ -873,7 +947,6 @@
         hero_subtitle: "مجلدات حصرية، المتجر الرسمي، السحب، وصول VIP وأكاديمية الذكاء الاصطناعي.",
         gift_mega_btn: "🎁 أرسل هدية $10 إلى صوفيا جيني تابوردا",
         all_folders_title: "جميع مجلدات صوفيا جيني تابوردا",
-        latest_uploads_title: "أحدث إضافات المتجر والسحب والأكاديمية",
         open_folder: "فتح المجلد", back_home_btn: "← العودة للرئيسية",
         already_paid_btn: "🔑 هل دفعت مسبقاً؟ أدخل Gmail",
         pay_paypal_card: "💳 الدفع عبر PAYPAL / بطاقة / بنك ($ USD)",
@@ -881,7 +954,8 @@
         send_free_msg: "إرسال رسالة مجانية",
         auto_msg_reply: "شكراً لمراسلة صوفيا جيني تابوردا! احجز لقاءك بـ $80 أو أرسل هدية $10 أدناه.",
         gift_10_btn: "🎁 أرسل هدية $10 إلى صوفيا جيني تابوردا",
-        meet_80_btn: "💎 لقاء صوفيا جيني تابوردا ($80 USD)"
+        meet_80_btn: "💎 لقاء صوفيا جيني تابوردا ($80 USD)",
+        footer_tagline: "ثقتكم هي هويتنا — Sofia Jenny Taborda"
       },
       tr: {
         nav_home: "Ana Sayfa", nav_folders: "Tüm Klasörler", nav_store: "Mağaza", nav_academy: "Akademi",
@@ -889,7 +963,6 @@
         hero_subtitle: "Özel Klasörler, Resmi Mağaza, Çekiliş, VIP Erişim ve Yapay Zeka Akademisi.",
         gift_mega_btn: "🎁 SOFIA JENNY TABORDA'YA $10 HEDİYE GÖNDER",
         all_folders_title: "Sofia Jenny Taborda Tüm Klasörler",
-        latest_uploads_title: "Mağaza, Çekiliş ve Akademi Yenilikleri",
         open_folder: "Klasörü Aç", back_home_btn: "← Ana Sayfaya Dön",
         already_paid_btn: "🔑 Ödeme Yaptınız mı? Gmail Girin",
         pay_paypal_card: "💳 PAYPAL / KART / BANKA İLE ÖDE ($ USD)",
@@ -897,7 +970,8 @@
         send_free_msg: "Ücretsiz Mesaj Gönder",
         auto_msg_reply: "Sofia Jenny Taborda'ya mesaj attığınız için teşekkürler! $80 görüşme ayırtın veya $10 hediye gönderin.",
         gift_10_btn: "🎁 Sofia Jenny Taborda'ya $10 Hediye Gönder",
-        meet_80_btn: "💎 Sofia Jenny Taborda ile Tanış ($80 USD)"
+        meet_80_btn: "💎 Sofia Jenny Taborda ile Tanış ($80 USD)",
+        footer_tagline: "Güveniniz bizim kimliğimizdir — Sofia Jenny Taborda"
       }
     };
 
@@ -979,24 +1053,40 @@
       });
     }
 
+    /* Render ALL non-VIP uploads right below the white line; clicking goes straight to PayPal */
     function renderMiniUploads() {
       const grid = document.getElementById("miniUploadsGrid");
       grid.innerHTML = "";
-      if (!PUBLIC_MEDIA.length) return;
 
-      PUBLIC_MEDIA.forEach(item => {
+      const nonVipItems = PUBLIC_MEDIA.filter(item =>
+        item.FolderID !== "videos_photos" && item.FolderID !== "whatsapp"
+      );
+
+      if (!nonVipItems.length) return;
+
+      nonVipItems.forEach(item => {
         const card = document.createElement("div");
         card.className = "mini-card";
         const priceLabel = item.Price ? `$${escapeHtml(item.Price)} USD` : "";
-        card.onclick = () => openFolderAndProduct(item.FolderID, item.Title);
+        const directPayPalUrl = (item.PayPalLink && item.PayPalLink.trim()) ? item.PayPalLink.trim() : "";
+
+        const handleItemAction = () => {
+          if (directPayPalUrl) {
+            window.open(directPayPalUrl, "_blank", "noopener");
+          } else {
+            openFolderAndProduct(item.FolderID, item.Title);
+          }
+        };
+
+        card.onclick = handleItemAction;
         card.innerHTML = `
           <div class="mini-thumb">
             ${item.ThumbnailURL ? `<img src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : `<span>✨</span>`}
           </div>
           <div class="mini-title">${escapeHtml(item.Title)}</div>
           ${priceLabel ? `<div class="mini-price">${priceLabel}</div>` : ``}
-          <button type="button" style="padding:8px 10px; font-size:12px;">
-            ${priceLabel ? `💳 Buy Now — ${priceLabel}` : t("open_folder")}
+          <button type="button" class="mini-buy-btn">
+            ${priceLabel ? `💳 Buy Now — ${priceLabel}` : (directPayPalUrl ? `💳 Pay with PayPal` : t("open_folder"))}
           </button>
         `;
         grid.appendChild(card);
@@ -1093,7 +1183,7 @@
           <h3 style="margin-bottom:8px;">${t("already_paid_btn")}</h3>
           <div style="display:flex; flex-wrap:wrap; gap:10px;">
             <input type="email" id="vipCheckGmailInput" placeholder="Enter approved Gmail" style="flex:1; min-width:220px; padding:10px; border-radius:10px; border:1px solid #80d8ff; background:#02102c; color:#fff;" />
-            <button onclick="verifyVipGmail('${folder.id}')">Unlock Folder</button>
+            <button type="button" onclick="verifyVipGmail('${folder.id}')">Unlock Folder</button>
           </div>
         </div>
 
@@ -1240,8 +1330,12 @@
         items.forEach((item, idx) => {
           const itemPrice = escapeHtml(item.Price || "10");
           const directLink = (item.PayPalLink && item.PayPalLink.trim()) ? item.PayPalLink.trim() : "";
+          const clickAction = directLink
+            ? `window.open('${escapeAttr(directLink)}', '_blank', 'noopener')`
+            : `openOrderCheckout(${idx}, '${folder.id}')`;
+
           html += `
-            <div class="media-item-card" onclick="openOrderCheckout(${idx}, '${folder.id}')">
+            <div class="media-item-card" onclick="${clickAction}">
               <div>
                 ${item.ThumbnailURL ? `<img class="yt-thumb" src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : ``}
                 <div class="mini-title" style="margin-top:8px;">${escapeHtml(item.Title)}</div>
@@ -1270,191 +1364,4 @@
 
     function openOrderCheckout(index, folderId) {
       const folder = FOLDERS_CONFIG.find(f => f.id === folderId);
-      const items = PUBLIC_MEDIA.filter(m => m.FolderID === folderId);
-      const item = items[index];
-      if (!item) return;
-
-      const modelPhoto = SITE_SETTINGS[folder.modelKey] || item.ThumbnailURL || "";
-      const paypalUrl = getPayPalLink(folder, item.PayPalLink);
-      const itemPrice = escapeHtml(item.Price || "10");
-
-      document.getElementById("checkoutArea").innerHTML = `
-        <div class="panel-box" style="background:rgba(1,16,46,0.92);">
-          <h3 style="font-size:20px; margin-bottom:14px;">${escapeHtml(item.Title)} — $${itemPrice} USD</h3>
-          <div class="paypal-split">
-            <div class="model-photo-box">
-              ${modelPhoto ? `<img src="${escapeAttr(modelPhoto)}" alt="Model / Product" />` : ``}
-            </div>
-            <div>
-              <div style="margin-bottom:14px;">
-                <a href="${escapeAttr(paypalUrl)}" target="_blank" rel="noopener" style="display:block; text-decoration:none;">
-                  <button type="button" style="width:100%; padding:15px; font-size:16px;">${t("pay_paypal_card")} ($${itemPrice} USD)</button>
-                </a>
-              </div>
-
-              <form onsubmit="submitOrderForm(event, '${folder.id}', '${escapeAttr(item.Title)}', '${itemPrice}')">
-                <div class="form-grid">
-                  <div class="field-group"><label>Full Name</label><input type="text" id="ordName" required /></div>
-                  <div class="field-group"><label>Gmail</label><input type="email" id="ordGmail" required /></div>
-                  <div class="field-group"><label>WhatsApp / Mobile Number</label><input type="text" id="ordPhone" required /></div>
-                  <div class="field-group"><label>Country</label><input type="text" id="ordCountry" required /></div>
-                  <div class="field-group"><label>City</label><input type="text" id="ordCity" required /></div>
-                  <div class="field-group"><label>Home / Office / Shop / Company Address</label><input type="text" id="ordAddress" required /></div>
-                  <div class="field-group"><label>Payment / Transaction ID</label><input type="text" id="ordTxId" required /></div>
-                  <div class="field-group"><label>Payment Screenshot</label><input type="file" id="ordScreenshot" accept="image/*" required /></div>
-                </div>
-
-                <button type="submit" style="width:100%; margin-top:10px;">${t("submit_proof")}</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      `;
-      document.getElementById("checkoutArea").scrollIntoView({ behavior: "smooth" });
-    }
-
-    async function submitOrderForm(e, folderId, productTitle, price) {
-      e.preventDefault();
-      const file = document.getElementById("ordScreenshot").files[0];
-      const base64 = file ? await fileToBase64(file) : "";
-      showStatus("Sending order to Admin Dashboard...");
-
-      const payload = {
-        action: "submitOrder",
-        folderId: folderId,
-        productTitle: productTitle,
-        price: price,
-        name: document.getElementById("ordName").value.trim(),
-        gmail: document.getElementById("ordGmail").value.trim(),
-        whatsapp: document.getElementById("ordPhone").value.trim(),
-        country: document.getElementById("ordCountry").value.trim(),
-        city: document.getElementById("ordCity").value.trim(),
-        address: document.getElementById("ordAddress").value.trim(),
-        txId: document.getElementById("ordTxId").value.trim(),
-        screenshot: base64
-      };
-
-      const res = await postToBackend(payload);
-      if (res.status === "success") {
-        showStatus("Order received! Once approved, your PDF receipt and delivery notice will be sent to your Gmail.");
-        e.target.reset();
-      } else {
-        showStatus("Error submitting order.");
-      }
-    }
-
-    function renderMeetMessageView(folder) {
-      const meetPayPalUrl = FIXED_PAYPAL_LINKS.meet;
-      const giftPayPalUrl = FIXED_PAYPAL_LINKS.gift;
-
-      document.getElementById("innerContent").innerHTML = `
-        <h2 style="font-size:24px; margin-bottom:14px;">${escapeHtml(folder.defaultTitle)}</h2>
-
-        <div style="margin-bottom:18px; display:flex; flex-wrap:wrap; gap:12px;">
-          <a href="${escapeAttr(meetPayPalUrl)}" target="_blank" rel="noopener" style="text-decoration:none; flex:1; min-width:240px;">
-            <button type="button" style="width:100%; padding:15px; font-size:16px;">${t("meet_80_btn")}</button>
-          </a>
-          <a href="${escapeAttr(giftPayPalUrl)}" target="_blank" rel="noopener" style="text-decoration:none; flex:1; min-width:240px;">
-            <button type="button" style="width:100%; padding:15px; font-size:16px;">${t("gift_10_btn")}</button>
-          </a>
-        </div>
-
-        <form onsubmit="submitFreeMessage(event)" style="max-width:680px;">
-          <div class="form-grid">
-            <div class="field-group"><label>Your Name</label><input type="text" id="msgName" required /></div>
-            <div class="field-group"><label>Your Gmail</label><input type="email" id="msgGmail" required /></div>
-            <div class="field-group"><label>WhatsApp / Phone</label><input type="text" id="msgPhone" /></div>
-          </div>
-          <div class="field-group">
-            <label>Your Message</label>
-            <textarea id="msgText" rows="4" required></textarea>
-          </div>
-          <button type="submit">${t("send_free_msg")}</button>
-        </form>
-
-        <div id="autoReplyBox" class="hidden" style="margin-top:18px; padding:18px; border-radius:16px; background:rgba(0,70,175,0.65); border:1.5px solid #ffffff;">
-          <p style="font-size:17px; margin-bottom:14px;">${t("auto_msg_reply")}</p>
-          <div style="display:flex; flex-wrap:wrap; gap:12px;">
-            <a href="${escapeAttr(meetPayPalUrl)}" target="_blank" rel="noopener" style="text-decoration:none;">
-              <button type="button">${t("meet_80_btn")}</button>
-            </a>
-            <a href="${escapeAttr(giftPayPalUrl)}" target="_blank" rel="noopener" style="text-decoration:none;">
-              <button type="button">${t("gift_10_btn")}</button>
-            </a>
-          </div>
-        </div>
-      `;
-    }
-
-    async function submitFreeMessage(e) {
-      e.preventDefault();
-      const payload = {
-        action: "submitMessage",
-        name: document.getElementById("msgName").value.trim(),
-        gmail: document.getElementById("msgGmail").value.trim(),
-        whatsapp: document.getElementById("msgPhone").value.trim(),
-        message: document.getElementById("msgText").value.trim()
-      };
-      await postToBackend(payload);
-      document.getElementById("autoReplyBox").classList.remove("hidden");
-      e.target.reset();
-    }
-
-    function renderAcademyView(folder) {
-      const items = PUBLIC_MEDIA.filter(m => m.FolderID === "academy");
-      let html = `<h2 style="font-size:24px; margin-bottom:14px;">${escapeHtml(folder.defaultTitle)}</h2>`;
-      if (!items.length) {
-        html += `<div class="status-banner">AI &amp; Social Media earning lessons will appear here.</div>`;
-      } else {
-        html += `<div class="media-gallery-grid">`;
-        items.forEach(item => {
-          html += `
-            <div class="media-item-card">
-              ${item.ThumbnailURL ? `<img class="yt-thumb" src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : ``}
-              <div class="mini-title">${escapeHtml(item.Title)}</div>
-              ${item.Description ? `<p style="font-size:13px; color:#d8efff;">${escapeHtml(item.Description)}</p>` : ``}
-              ${item.DriveURL ? `<div class="video-frame-wrap"><iframe src="${escapeAttr(item.DriveURL)}" allow="autoplay; fullscreen" allowfullscreen></iframe></div>` : ``}
-            </div>
-          `;
-        });
-        html += `</div>`;
-      }
-      document.getElementById("innerContent").innerHTML = html;
-    }
-
-    async function postToBackend(payload) {
-      const res = await fetch(BACKEND_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
-      });
-      return await res.json();
-    }
-
-    function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function showStatus(msg) {
-      const el = document.getElementById("innerStatus");
-      el.classList.remove("hidden");
-      el.textContent = msg;
-    }
-
-    function escapeHtml(str) {
-      return String(str || "").replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
-    }
-
-    function escapeAttr(str) {
-      return escapeHtml(str);
-    }
-
-    loadSiteData();
-  </script>
-</body>
-</html>
+      const items = PUBLIC_MEDIA.filter(m => m.FolderID ===
