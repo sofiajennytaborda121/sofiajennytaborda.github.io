@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sofia Jenny Taborda Official</title>
+  <style>
+    :root {
+      --bg-dark: #02091c;
+      --blue-glow: #00a8ff;
+      --blue-deep: #0044cc;
+      --glass-bg: rgba(6, 28, 78, 0.72);
+      --glass-border: rgba(85, 196, 255, 0.45);
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 20% 15%, rgba(0, 170, 255, 0.45), transparent 42%),
+        radial-gradient(circle at 82% 25%, rgba(0, 85, 255, 0.5), transparent 48%),
+        radial-gradient(circle at 50% 80%, rgba(0, 195, 255, 0.35), transparent 55%),
+        linear-gradient(145deg, #020c26 0%, #052263 48%, #020a1f 100%);
+      background-attachment: fixed;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-weight: 700;
+    }
+
+    button {
+      color: var(--white) !important;
+      cursor: pointer;
+      border: 1.5px solid rgba(160, 228, 255, 0.75);
+      background: linear-gradient(135deg, #0077ff 0%, #00c3ff 100%);
+      box-shadow: 0 0 18px rgba(0, 174, 255, 0.45);
+      border-radius: 12px;
+      padding: 11px 18px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(0, 200, 255, 0.75);
+      filter: brightness(1.08);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* HEADER & NAVBAR */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .logo-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00d2ff, #004cff);
+      border: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      color: #ffffff;
+      box-shadow: 0 0 18px rgba(0, 195, 255, 0.8);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      text-shadow: 0 2px 10px rgba(0, 160, 255, 0.7);
+    }
+
+    .blue-tick {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #1d9bf0;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 900;
+      border: 1.5px solid #ffffff;
+      box-shadow: 0 0 12px rgba(29, 155, 240, 0.95);
+      flex-shrink: 0;
+    }
+
+    .nav-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      padding: 9px 14px;
+      font-size: 13px;
+      border-radius: 10px;
+    }
+
+    .lang-select {
+      background: rgba(3, 18, 52, 0.92);
+      color: #ffffff;
+      border: 1.5px solid rgba(130, 215, 255, 0.8);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    /* HERO HEADER BANNER */
+    .hero-box {
+      margin-top: 18px;
+      padding: 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 22px;
+      display: grid;
+      grid-template-columns: minmax(220px, 320px) 1fr;
+      gap: 22px;
+      align-items: center;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-photo-frame {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(145, 222, 255, 0.7);
+      background: rgba(0, 22, 68, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 190px;
+    }
+
+    .hero-photo-frame img {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-placeholder {
+      padding: 28px 16px;
+      text-align: center;
+      color: #cceeff;
+      font-size: 14px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: clamp(22px, 3.2vw, 34px);
+      font-weight: 900;
+      text-shadow: 0 3px 14px rgba(0, 175, 255, 0.65);
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 1.7vw, 17px);
+      color: #dff4ff;
+      font-weight: 600;
+    }
+
+    .gift-mega-btn {
+      width: 100%;
+      padding: 18px 24px;
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #0066ff 0%, #00b7ff 50%, #0066ff 100%);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 28px rgba(0, 195, 255, 0.75);
+    }
+
+    /* ALL FOLDERS SECTION BAR */
+    .section-bar {
+      margin-top: 24px;
+      padding: 14px 20px;
+      background: rgba(0, 85, 215, 0.45);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .section-bar-title {
+      font-size: clamp(17px, 2.2vw, 23px);
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 8 FOLDERS GRID */
+    .folders-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .folder-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.38);
+    }
+
+    .folder-card:hover {
+      transform: translateY(-4px);
+      border-color: #ffffff;
+      box-shadow: 0 12px 30px rgba(0, 175, 255, 0.55);
+    }
+
+    .folder-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: rgba(1, 16, 48, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1.5px solid rgba(110, 205, 255, 0.35);
+    }
+
+    .folder-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .folder-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .folder-title {
+      font-size: clamp(14px, 1.5vw, 17px);
+      font-weight: 900;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .folder-open-btn {
+      width: 100%;
+      padding: 11px 14px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    /* SMALL PREVIEW CARDS FOR NON-VIP UPLOADS */
+    .mini-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      background: var(--glass-bg);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mini-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #031130;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mini-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .mini-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .mini-price {
+      font-size: 13px;
+      color: #7ee3ff;
+    }
+
+    /* INNER VIEW PANEL (FOLDERS / PAYPAL / FORMS) */
+    .panel-box {
+      margin-top: 20px;
+      padding: 22px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 22px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+    }
+
+    .banner-box {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      border: 1.5px solid rgba(145, 222, 255, 0.55);
+      background: rgba(0, 20, 60, 0.7);
+      text-align: center;
+    }
+
+    .banner-box img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      display: inline-block;
+    }
+
+    .paypal-split {
+      display: grid;
+      grid-template-columns: minmax(240px, 380px) 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .model-photo-box {
+      background: rgba(2, 16, 46, 0.8);
+      border: 2px solid rgba(135, 218, 255, 0.65);
+      border-radius: 16px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .model-photo-box img {
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .field-group label {
+      font-size: 13px;
+      color: #d6f1ff;
+    }
+
+    .field-group input,
+    .field-group textarea {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(120, 205, 255, 0.55);
+      background: rgba(2, 14, 42, 0.88);
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .media-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .media-item-card {
+      background: rgba(2, 18, 52, 0.82);
+      border: 1.5px solid rgba(115, 200, 255, 0.45);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .media-item-card img.full-photo {
+      width: 100%;
+      height: auto;
+      max-height: 360px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #010b22;
+    }
+
+    .media-item-card img.yt-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #010b22;
+    }
+
+    .video-frame-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000000;
+      border: 1.5px solid rgba(120, 205, 255, 0.6);
+    }
+
+    .video-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .card-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .badge-pill {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(0, 145, 255, 0.28);
+      border: 1px solid rgba(145, 225, 255, 0.55);
+      color: #ffffff;
+    }
+
+    .status-banner {
+      margin-top: 12px;
+      padding: 12px 15px;
+      border-radius: 12px;
+      background: rgba(0, 150, 255, 0.25);
+      border: 1px solid rgba(140, 220, 255, 0.7);
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* TABLET & MOBILE RESPONSIVE */
+    @media (max-width: 1024px) {
+      .folders-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-box,
+      .paypal-split {
+        grid-template-columns: 1fr;
+      }
+
+      .top-bar {
+        padding: 12px;
+      }
+
+      .container {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .folders-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- TOP HEADER & NAVIGATION -->
+    <header class="top-bar">
+      <div class="brand-left" onclick="goHome()">
+        <div class="logo-circle" id="siteLogoBox">SJT</div>
+        <div class="brand-title-wrap">
+          <div class="brand-name-row">
+            <span>Sofia Jenny Taborda Official</span>
+            <span class="blue-tick" title="Verified Official">✓</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-btn" onclick="goHome()" data-i18n="nav_home">Home</button>
+        <button class="nav-btn" onclick="scrollToFolders()" data-i18n="nav_folders">All Folders</button>
+        <button class="nav-btn" onclick="openFolder('store')" data-i18n="nav_store">Store</button>
+        <button class="nav-btn" onclick="openFolder('academy')" data-i18n="nav_academy">Academy</button>
+        <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)" aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Español (Spanish)</option>
+          <option value="zh-CN">中文 (Chinese)</option>
+          <option value="ur">اردو (Urdu)</option>
+          <option value="hi">हिन्दी (Hindi)</option>
+          <option value="pt">Português (Portuguese)</option>
+          <option value="fr">Français (French)</option>
+          <option value="de">Deutsch (German)</option>
+          <option value="it">Italiano (Italian)</option>
+          <option value="ru">Русский (Russian)</option>
+          <option value="ar">العربية (Arabic)</option>
+          <option value="tr">Türkçe (Turkish)</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- HOME VIEW -->
+    <main id="homeView">
+      <!-- HERO HEADER PHOTO + BIG $10 GIFT BUTTON -->
+      <section class="hero-box">
+        <div class="hero-photo-frame" id="mainHeaderPhotoBox">
+          <div class="hero-placeholder" data-i18n="header_photo_hint">Header Photo</div>
+        </div>
+
+        <div class="hero-content">
+          <div class="hero-heading">
+            <span>Sofia Jenny Taborda Official</span>
+            <span class="blue-tick">✓</span>
+          </div>
+          <p class="hero-sub" data-i18n="hero_subtitle">
+            Exclusive Folders, Official Store, Lucky Draw, VIP Access &amp; AI Social Media Academy.
+          </p>
+          <button class="gift-mega-btn" onclick="openGiftPage()" data-i18n="gift_mega_btn">
+            🎁 SEND A $10 GIFT TO SOFIA JENNY TABORDA
+          </button>
+          <div class="card-badge-row">
+            <span class="badge-pill">PayPal</span>
+            <span class="badge-pill">Visa / Mastercard / Card</span>
+            <span class="badge-pill">Bank ($ USD)</span>
+            <span class="badge-pill">12 Languages</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALL FOLDERS SECTION BAR -->
+      <div id="allFoldersSection" class="section-bar">
+        <div class="section-bar-title">
+          <span>📁</span>
+          <span data-i18n="all_folders_title">Sofia Jenny Taborda All Folders</span>
+        </div>
+      </div>
+
+      <!-- 8 FOLDERS GRID -->
+      <section class="folders-grid" id="foldersGrid"></section>
+
+      <!-- SMALL PREVIEW CARDS FOR NON-PAID FOLDER UPLOADS -->
+      <section class="section-bar" style="margin-top: 28px;">
+        <div class="section-bar-title">
+          <span>✨</span>
+          <span data-i18n="latest_uploads_title">Latest Store, Lucky Draw &amp; Academy Uploads</span>
+        </div>
+      </section>
+      <section class="mini-grid" id="miniUploadsGrid"></section>
+    </main>
+
+    <!-- INNER VIEW (FOLDER CONTENT / PAYPAL / FORMS) -->
+    <section id="innerView" class="panel-box hidden">
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; margin-bottom:16px;">
+        <button onclick="goHome()" data-i18n="back_home_btn">← Back to Home</button>
+        <button id="alreadyPaidTopBtn" class="hidden" onclick="toggleVipLoginBox()" data-i18n="already_paid_btn">
+          🔑 Already Paid? Enter Gmail
+        </button>
+      </div>
+
+      <div id="innerBannerBox" class="banner-box hidden"></div>
+      <div id="innerContent"></div>
+      <div id="innerStatus" class="status-banner hidden"></div>
+    </section>
+  </div>
+
+  <script>
+    // =========================================================================
+    // CONNECTED TO YOUR GOOGLE APPS SCRIPT BACKEND
+    // =========================================================================
+    const BACKEND_URL = "https://script.google.com/macros/s/AKfycbw1S3rKmIHA0KUC4hjC9qPc1PykcMsY96_qnKDb94fTlzEHU8aNnniXfTn_yipz112PJA/exec";
+
+    const FOLDERS_CONFIG = [
+      { id: "videos_photos", paidVip: true, defaultTitle: "Sofia Jenny Taborda Videos & Photos", paypalKey: "vip_videos_paypal_link", coverKey: "cover_videos_photos", bannerKey: "banner_videos_photos", modelKey: "paypal_model_videos_photos" },
+      { id: "whatsapp", paidVip: true, defaultTitle: "Sofia Jenny Taborda WhatsApp", paypalKey: "vip_whatsapp_paypal_link", coverKey: "cover_whatsapp", bannerKey: "banner_whatsapp", modelKey: "paypal_model_whatsapp" },
+      { id: "gift", paidVip: false, isGift: true, defaultTitle: "Sofia Jenny Taborda Gift ($10)", paypalKey: "gift_paypal_link", coverKey: "cover_gift", bannerKey: "banner_gift", modelKey: "paypal_model_gift" },
+      { id: "luckydraw", paidVip: false, isCatalog: true, defaultTitle: "Sofia Jenny Taborda Lucky Draw", paypalKey: "gift_paypal_link", coverKey: "cover_luckydraw", bannerKey: "banner_luckydraw", modelKey: "paypal_model_luckydraw" },
+      { id: "store", paidVip: false, isCatalog: true, defaultTitle: "Sofia Jenny Taborda Store", paypalKey: "gift_paypal_link", coverKey: "cover_store", bannerKey: "banner_store", modelKey: "paypal_model_store" },
+      { id: "dolls", paidVip: false, isCatalog: true, defaultTitle: "Sofia Jenny Taborda Sexy Dolls", paypalKey: "gift_paypal_link", coverKey: "cover_dolls", bannerKey: "banner_dolls", modelKey: "paypal_model_dolls" },
+      { id: "meet", paidVip: false, isMeet: true, defaultTitle: "Meet Sofia Jenny Taborda", paypalKey: "gift_paypal_link", coverKey: "cover_meet", bannerKey: "banner_meet", modelKey: "paypal_model_gift" },
+      { id: "academy", paidVip: false, isAcademy: true, defaultTitle: "Sofia Jenny Taborda Academy", paypalKey: "gift_paypal_link", coverKey: "cover_academy", bannerKey: "banner_academy", modelKey: "paypal_model_gift" }
+    ];
+
+    const I18N = {
+      en: {
+        nav_home: "Home", nav_folders: "All Folders", nav_store: "Store", nav_academy: "Academy",
+        header_photo_hint: "Header Photo",
+        hero_subtitle: "Exclusive Folders, Official Store, Lucky Draw, VIP Access & AI Social Media Academy.",
+        gift_mega_btn: "🎁 SEND A $10 GIFT TO SOFIA JENNY TABORDA",
+        all_folders_title: "Sofia Jenny Taborda All Folders",
+        latest_uploads_title: "Latest Store, Lucky Draw & Academy Uploads",
+        open_folder: "Open Folder", back_home_btn: "← Back to Home",
+        already_paid_btn: "🔑 Already Paid? Enter Gmail",
+        pay_paypal_card: "💳 PAY NOW WITH PAYPAL / CARD / BANK ($ USD)",
+        submit_proof: "Submit Payment & Details",
+        send_free_msg: "Send Free Message",
+        auto_msg_reply: "Thank you for messaging Sofia Jenny Taborda! She is waiting for your gift.",
+        gift_10_btn: "🎁 Send $10 Gift to Sofia Jenny Taborda"
+      },
+      es: {
+        nav_home: "Inicio", nav_folders: "Todas las Carpetas", nav_store: "Tienda", nav_academy: "Academia",
+        header_photo_hint: "Foto de Encabezado",
+        hero_subtitle: "Carpetas Exclusivas, Tienda Oficial, Sorteo, Acceso VIP y Academia de IA y Redes Sociales.",
+        gift_mega_btn: "🎁 ENVIAR UN REGALO DE $10 A SOFIA JENNY TABORDA",
+        all_folders_title: "Todas las Carpetas de Sofia Jenny Taborda",
+        latest_uploads_title: "Últimas Publicaciones de Tienda, Sorteo y Academia",
+        open_folder: "Abrir Carpeta", back_home_btn: "← Volver al Inicio",
+        already_paid_btn: "🔑 ¿Ya Pagaste? Ingresa tu Gmail",
+        pay_paypal_card: "💳 PAGAR CON PAYPAL / TARJETA / BANCO ($ USD)",
+        submit_proof: "Enviar Pago y Datos",
+        send_free_msg: "Enviar Mensaje Gratis",
+        auto_msg_reply: "¡Gracias por escribirle a Sofia Jenny Taborda! Ella está esperando tu regalo.",
+        gift_10_btn: "🎁 Enviar Regalo de $10 a Sofia Jenny Taborda"
+      },
+      "zh-CN": {
+        nav_home: "首页", nav_folders: "全部文件夹", nav_store: "官方商店", nav_academy: "学院",
+        header_photo_hint: "页眉照片",
+        hero_subtitle: "专属文件夹、官方商店、幸运抽奖、VIP权限以及AI社交媒体学院。",
+        gift_mega_btn: "🎁 向 SOFIA JENNY TABORDA 发送 $10 礼物",
+        all_folders_title: "Sofia Jenny Taborda 全部文件夹",
+        latest_uploads_title: "最新商店、抽奖与学院内容",
+        open_folder: "打开文件夹", back_home_btn: "← 返回首页",
+        already_paid_btn: "🔑 已付款？输入 Gmail",
+        pay_paypal_card: "💳 使用 PAYPAL / 银行卡 / 银行支付 ($ USD)",
+        submit_proof: "提交付款与信息",
+        send_free_msg: "发送免费消息",
+        auto_msg_reply: "感谢给 Sofia Jenny Taborda 发消息！她正在等待您的礼物。",
+        gift_10_btn: "🎁 向 Sofia Jenny Taborda 发送 $10 礼物"
+      },
+      ur: {
+        nav_home: "ہوم", nav_folders: "تمام فولڈرز", nav_store: "اسٹور", nav_academy: "اکیڈمی",
+        header_photo_hint: "ہیڈر فوٹو",
+        hero_subtitle: "خاص فولڈرز، آفیشل اسٹور، لکی ڈرا، VIP ایکسیس اور AI سوشل میڈیا اکیڈمی۔",
+        gift_mega_btn: "🎁 صوفیہ جینی تبوردا کو $10 گفٹ بھیجیں",
+        all_folders_title: "صوفیہ جینی تبوردا کے تمام فولڈرز",
+        latest_uploads_title: "اسٹور، لکی ڈرا اور اکیڈمی کے نئے اپلوڈز",
+        open_folder: "فولڈر کھولیں", back_home_btn: "← ہوم پیج پر جائیں",
+        already_paid_btn: "🔑 پہلے پیمنٹ کر چکے ہیں؟ Gmail لکھیں",
+        pay_paypal_card: "💳 پے پال / کارڈ / بینک سے ڈالر ($) میں پیمنٹ کریں",
+        submit_proof: "پیمنٹ اور تفصیل جمع کرائیں",
+        send_free_msg: "فری میسج بھیجیں",
+        auto_msg_reply: "صوفیہ جینی تبوردا کو میسج کرنے کا شکریہ، وہ آپ کے گفٹ کا انتظار کر رہی ہیں۔",
+        gift_10_btn: "🎁 صوفیہ جینی تبوردا کو $10 گفٹ بھیجیں"
+      },
+      hi: {
+        nav_home: "होम", nav_folders: "सभी फ़ोल्डर", nav_store: "स्टोर", nav_academy: "अकादमी",
+        header_photo_hint: "हेडर फ़ोटो",
+        hero_subtitle: "विशेष फ़ोल्डर, ऑफ़िशियल स्टोर, लकी ड्रॉ, VIP एक्सेस और AI सोशल मीडिया अकादमी।",
+        gift_mega_btn: "🎁 SOFIA JENNY TABORDA को $10 गिफ्ट भेजें",
+        all_folders_title: "Sofia Jenny Taborda के सभी फ़ोल्डर",
+        latest_uploads_title: "नए स्टोर, लकी ड्रॉ और अकादमी अपलोड",
+        open_folder: "फ़ोल्डर खोलें", back_home_btn: "← होम पर जाएं",
+        already_paid_btn: "🔑 पहले भुगतान कर चुके हैं? Gmail दर्ज करें",
+        pay_paypal_card: "💳 PAYPAL / कार्ड / बैंक से ($ USD) भुगतान करें",
+        submit_proof: "भुगतान और विवरण भेजें",
+        send_free_msg: "फ़्री मैसेज भेजें",
+        auto_msg_reply: "Sofia Jenny Taborda को मैसेज करने के लिए धन्यवाद! वह आपके गिफ्ट का इंतज़ार कर रही हैं।",
+        gift_10_btn: "🎁 Sofia Jenny Taborda को $10 गिफ्ट भेजें"
+      },
+      pt: {
+        nav_home: "Início", nav_folders: "Todas as Pastas", nav_store: "Loja", nav_academy: "Academia",
+        header_photo_hint: "Foto do Cabeçalho",
+        hero_subtitle: "Pastas Exclusivas, Loja Oficial, Sorteio, Acesso VIP e Academia de IA e Redes Sociais.",
+        gift_mega_btn: "🎁 ENVIAR PRESENTE DE $10 PARA SOFIA JENNY TABORDA",
+        all_folders_title: "Todas as Pastas de Sofia Jenny Taborda",
+        latest_uploads_title: "Novidades da Loja, Sorteio e Academia",
+        open_folder: "Abrir Pasta", back_home_btn: "← Voltar ao Início",
+        already_paid_btn: "🔑 Já Pagou? Digite seu Gmail",
+        pay_paypal_card: "💳 PAGAR COM PAYPAL / CARTÃO / BANCO ($ USD)",
+        submit_proof: "Enviar Pagamento e Dados",
+        send_free_msg: "Enviar Mensagem Grátis",
+        auto_msg_reply: "Obrigado por enviar mensagem para Sofia Jenny Taborda! Ela está esperando o seu presente.",
+        gift_10_btn: "🎁 Enviar Presente de $10 para Sofia Jenny Taborda"
+      },
+      fr: {
+        nav_home: "Accueil", nav_folders: "Tous les Dossiers", nav_store: "Boutique", nav_academy: "Académie",
+        header_photo_hint: "Photo d'En-tête",
+        hero_subtitle: "Dossiers Exclusifs, Boutique Officielle, Tirage au Sort, Accès VIP et Académie IA.",
+        gift_mega_btn: "🎁 ENVOYER UN CADEAU DE 10$ À SOFIA JENNY TABORDA",
+        all_folders_title: "Tous les Dossiers de Sofia Jenny Taborda",
+        latest_uploads_title: "Derniers Ajouts Boutique, Tirage & Académie",
+        open_folder: "Ouvrir le Dossier", back_home_btn: "← Retour à l'Accueil",
+        already_paid_btn: "🔑 Déjà Payé ? Entrez votre Gmail",
+        pay_paypal_card: "💳 PAYER AVEC PAYPAL / CARTE / BANQUE ($ USD)",
+        submit_proof: "Envoyer Paiement et Infos",
+        send_free_msg: "Envoyer un Message Gratuit",
+        auto_msg_reply: "Merci d'avoir envoyé un message à Sofia Jenny Taborda ! Elle attend votre cadeau.",
+        gift_10_btn: "🎁 Envoyer un Cadeau de 10$ à Sofia Jenny Taborda"
+      },
+      de: {
+        nav_home: "Start", nav_folders: "Alle Ordner", nav_store: "Shop", nav_academy: "Akademie",
+        header_photo_hint: "Header-Foto",
+        hero_subtitle: "Exklusive Ordner, Offizieller Shop, Verlosung, VIP-Zugang & KI-Social-Media-Akademie.",
+        gift_mega_btn: "🎁 10$ GESCHENK AN SOFIA JENNY TABORDA SENDEN",
+        all_folders_title: "Alle Ordner von Sofia Jenny Taborda",
+        latest_uploads_title: "Neueste Shop-, Gewinnspiel- & Akademie-Inhalte",
+        open_folder: "Ordner Öffnen", back_home_btn: "← Zurück zur Startseite",
+        already_paid_btn: "🔑 Schon Bezahlt? Gmail Eingeben",
+        pay_paypal_card: "💳 MIT PAYPAL / KARTE / BANK ZAHLEN ($ USD)",
+        submit_proof: "Zahlung & Daten Senden",
+        send_free_msg: "Kostenlose Nachricht Senden",
+        auto_msg_reply: "Danke für deine Nachricht an Sofia Jenny Taborda! Sie wartet auf dein Geschenk.",
+        gift_10_btn: "🎁 10$ Geschenk an Sofia Jenny Taborda Senden"
+      },
+      it: {
+        nav_home: "Home", nav_folders: "Tutte le Cartelle", nav_store: "Negozio", nav_academy: "Accademia",
+        header_photo_hint: "Foto Intestazione",
+        hero_subtitle: "Cartelle Esclusive, Negozio Ufficiale, Estrazione, Accesso VIP e Accademia AI.",
+        gift_mega_btn: "🎁 INVIA UN REGALO DA $10 A SOFIA JENNY TABORDA",
+        all_folders_title: "Tutte le Cartelle di Sofia Jenny Taborda",
+        latest_uploads_title: "Ultimi Caricamenti Negozio, Estrazione e Accademia",
+        open_folder: "Apri Cartella", back_home_btn: "← Torna alla Home",
+        already_paid_btn: "🔑 Hai Già Pagato? Inserisci Gmail",
+        pay_paypal_card: "💳 PAGA CON PAYPAL / CARTA / BANCA ($ USD)",
+        submit_proof: "Invia Pagamento e Dati",
+        send_free_msg: "Invia Messaggio Gratuito",
+        auto_msg_reply: "Grazie per aver scritto a Sofia Jenny Taborda! Lei sta aspettando il tuo regalo.",
+        gift_10_btn: "🎁 Invia Regalo da $10 a Sofia Jenny Taborda"
+      },
+      ru: {
+        nav_home: "Главная", nav_folders: "Все Папки", nav_store: "Магазин", nav_academy: "Академия",
+        header_photo_hint: "Фото Шапки",
+        hero_subtitle: "Эксклюзивные папки, официальный магазин, розыгрыш, VIP-доступ и академия ИИ.",
+        gift_mega_btn: "🎁 ОТПРАВИТЬ ПОДАРОК $10 SOFIA JENNY TABORDA",
+        all_folders_title: "Все Папки Sofia Jenny Taborda",
+        latest_uploads_title: "Новинки Магазина, Розыгрыша и Академии",
+        open_folder: "Открыть Папку", back_home_btn: "← На Главную",
+        already_paid_btn: "🔑 Уже Оплатили? Введите Gmail",
+        pay_paypal_card: "💳 ОПЛАТИТЬ PAYPAL / КАРТОЙ / БАНКОМ ($ USD)",
+        submit_proof: "Отправить Оплату и Данные",
+        send_free_msg: "Отправить Бесплатное Сообщение",
+        auto_msg_reply: "Спасибо за сообщение Sofia Jenny Taborda! Она ждёт ваш подарок.",
+        gift_10_btn: "🎁 Отправить Подарок $10 Sofia Jenny Taborda"
+      },
+      ar: {
+        nav_home: "الرئيسية", nav_folders: "جميع المجلدات", nav_store: "المتجر", nav_academy: "الأكاديمية",
+        header_photo_hint: "صورة الهيدر",
+        hero_subtitle: "مجلدات حصرية، المتجر الرسمي، السحب، وصول VIP وأكاديمية الذكاء الاصطناعي.",
+        gift_mega_btn: "🎁 أرسل هدية $10 إلى صوفيا جيني تابوردا",
+        all_folders_title: "جميع مجلدات صوفيا جيني تابوردا",
+        latest_uploads_title: "أحدث إضافات المتجر والسحب والأكاديمية",
+        open_folder: "فتح المجلد", back_home_btn: "← العودة للرئيسية",
+        already_paid_btn: "🔑 هل دفعت مسبقاً؟ أدخل Gmail",
+        pay_paypal_card: "💳 الدفع عبر PAYPAL / بطاقة / بنك ($ USD)",
+        submit_proof: "إرسال الدفع والبيانات",
+        send_free_msg: "إرسال رسالة مجانية",
+        auto_msg_reply: "شكراً لمراسلة صوفيا جيني تابوردا! وهي بانتظار هديتك.",
+        gift_10_btn: "🎁 أرسل هدية $10 إلى صوفيا جيني تابوردا"
+      },
+      tr: {
+        nav_home: "Ana Sayfa", nav_folders: "Tüm Klasörler", nav_store: "Mağaza", nav_academy: "Akademi",
+        header_photo_hint: "Başlık Fotoğrafı",
+        hero_subtitle: "Özel Klasörler, Resmi Mağaza, Çekiliş, VIP Erişim ve Yapay Zeka Akademisi.",
+        gift_mega_btn: "🎁 SOFIA JENNY TABORDA'YA $10 HEDİYE GÖNDER",
+        all_folders_title: "Sofia Jenny Taborda Tüm Klasörler",
+        latest_uploads_title: "Mağaza, Çekiliş ve Akademi Yenilikleri",
+        open_folder: "Klasörü Aç", back_home_btn: "← Ana Sayfaya Dön",
+        already_paid_btn: "🔑 Ödeme Yaptınız mı? Gmail Girin",
+        pay_paypal_card: "💳 PAYPAL / KART / BANKA İLE ÖDE ($ USD)",
+        submit_proof: "Ödeme ve Bilgileri Gönder",
+        send_free_msg: "Ücretsiz Mesaj Gönder",
+        auto_msg_reply: "Sofia Jenny Taborda'ya mesaj attığınız için teşekkürler! Hediyenizi bekliyor.",
+        gift_10_btn: "🎁 Sofia Jenny Taborda'ya $10 Hediye Gönder"
+      }
+    };
+
+    let SITE_SETTINGS = {};
+    let PUBLIC_MEDIA = [];
+    let CURRENT_LANG = "en";
+    let ACTIVE_FOLDER = null;
+
+    function t(key) {
+      return (I18N[CURRENT_LANG] && I18N[CURRENT_LANG][key]) || I18N.en[key] || key;
+    }
+
+    function changeLanguage(lang) {
+      CURRENT_LANG = lang;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === "ur" || lang === "ar") ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        el.textContent = t(key);
+      });
+
+      renderFoldersGrid();
+      renderMiniUploads();
+      if (ACTIVE_FOLDER) {
+        openFolder(ACTIVE_FOLDER.id);
+      }
+    }
+
+    async function loadSiteData() {
+      try {
+        const res = await fetch(BACKEND_URL + "?action=getPublicData");
+        const data = await res.json();
+        if (data.status === "success") {
+          SITE_SETTINGS = data.settings || {};
+          PUBLIC_MEDIA = data.media || [];
+          applyHeaderAndHeroPhotos();
+          renderFoldersGrid();
+          renderMiniUploads();
+        }
+      } catch (e) {
+        renderFoldersGrid();
+        renderMiniUploads();
+      }
+    }
+
+    function applyHeaderAndHeroPhotos() {
+      const logoBox = document.getElementById("siteLogoBox");
+      if (SITE_SETTINGS.logo_url) {
+        logoBox.innerHTML = `<img src="${escapeAttr(SITE_SETTINGS.logo_url)}" alt="Logo" />`;
+      }
+
+      const heroBox = document.getElementById("mainHeaderPhotoBox");
+      if (SITE_SETTINGS.main_header_photo) {
+        heroBox.innerHTML = `<img src="${escapeAttr(SITE_SETTINGS.main_header_photo)}" alt="Sofia Jenny Taborda" />`;
+      }
+    }
+
+    function renderFoldersGrid() {
+      const grid = document.getElementById("foldersGrid");
+      grid.innerHTML = "";
+
+      FOLDERS_CONFIG.forEach(folder => {
+        const coverSrc = SITE_SETTINGS[folder.coverKey] || "";
+        const card = document.createElement("div");
+        card.className = "folder-card";
+        card.innerHTML = `
+          <div class="folder-img-wrap">
+            ${coverSrc ? `<img src="${escapeAttr(coverSrc)}" alt="${escapeAttr(folder.defaultTitle)}" />` : `<span>📁</span>`}
+          </div>
+          <div class="folder-body">
+            <div class="folder-title">${escapeHtml(folder.defaultTitle)}</div>
+            <button class="folder-open-btn" onclick="openFolder('${folder.id}')">${t("open_folder")}</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderMiniUploads() {
+      const grid = document.getElementById("miniUploadsGrid");
+      grid.innerHTML = "";
+      if (!PUBLIC_MEDIA.length) return;
+
+      PUBLIC_MEDIA.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "mini-card";
+        card.innerHTML = `
+          <div class="mini-thumb">
+            ${item.ThumbnailURL ? `<img src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : `<span>✨</span>`}
+          </div>
+          <div class="mini-title">${escapeHtml(item.Title)}</div>
+          ${item.Price ? `<div class="mini-price">$${escapeHtml(item.Price)} USD</div>` : ``}
+          <button onclick="openFolder('${escapeAttr(item.FolderID)}')" style="padding:8px 10px; font-size:12px;">${t("open_folder")}</button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function goHome() {
+      ACTIVE_FOLDER = null;
+      document.getElementById("innerView").classList.add("hidden");
+      document.getElementById("homeView").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function scrollToFolders() {
+      goHome();
+      setTimeout(() => {
+        document.getElementById("allFoldersSection").scrollIntoView({ behavior: "smooth" });
+      }, 80);
+    }
+
+    function openGiftPage() {
+      openFolder("gift");
+    }
+
+    function openFolder(folderId) {
+      const folder = FOLDERS_CONFIG.find(f => f.id === folderId);
+      if (!folder) return;
+      ACTIVE_FOLDER = folder;
+
+      document.getElementById("homeView").classList.add("hidden");
+      const innerView = document.getElementById("innerView");
+      innerView.classList.remove("hidden");
+      document.getElementById("innerStatus").classList.add("hidden");
+
+      const bannerBox = document.getElementById("innerBannerBox");
+      const bannerUrl = SITE_SETTINGS[folder.bannerKey] || "";
+      if (bannerUrl) {
+        bannerBox.classList.remove("hidden");
+        bannerBox.innerHTML = `<img src="${escapeAttr(bannerUrl)}" alt="Banner" />`;
+      } else {
+        bannerBox.classList.add("hidden");
+        bannerBox.innerHTML = "";
+      }
+
+      const paidBtn = document.getElementById("alreadyPaidTopBtn");
+      if (folder.paidVip) {
+        paidBtn.classList.remove("hidden");
+        renderVipPaymentView(folder);
+      } else if (folder.isGift) {
+        paidBtn.classList.add("hidden");
+        renderGiftView(folder);
+      } else if (folder.isMeet) {
+        paidBtn.classList.add("hidden");
+        renderMeetMessageView(folder);
+      } else if (folder.isAcademy) {
+        paidBtn.classList.add("hidden");
+        renderAcademyView(folder);
+      } else {
+        paidBtn.classList.add("hidden");
+        renderCatalogFolderView(folder);
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function getPayPalLink(folder, customLink) {
+      if (customLink && customLink.trim()) return customLink.trim();
+      return SITE_SETTINGS[folder.paypalKey] || SITE_SETTINGS.gift_paypal_link || "https://www.paypal.com/";
+    }
+
+    // 1. VIP PAID FOLDER (VIDEOS & PHOTOS / WHATSAPP)
+    function renderVipPaymentView(folder) {
+      const modelPhoto = SITE_SETTINGS[folder.modelKey] || "";
+      const paypalUrl = getPayPalLink(folder);
+
+      document.getElementById("innerContent").innerHTML = `
+        <h2 style="font-size:24px; margin-bottom:14px;">${escapeHtml(folder.defaultTitle)}</h2>
+
+        <div id="vipGmailUnlockBox" class="hidden" style="margin-bottom:18px; padding:16px; border-radius:14px; background:rgba(0,40,105,0.7); border:1px solid #80d8ff;">
+          <h3 style="margin-bottom:8px;">${t("already_paid_btn")}</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <input type="email" id="vipCheckGmailInput" placeholder="Enter approved Gmail" style="flex:1; min-width:220px; padding:10px; border-radius:10px; border:1px solid #80d8ff; background:#02102c; color:#fff;" />
+            <button onclick="verifyVipGmail('${folder.id}')">Unlock Folder</button>
+          </div>
+        </div>
+
+        <div class="paypal-split">
+          <div class="model-photo-box">
+            ${modelPhoto ? `<img src="${escapeAttr(modelPhoto)}" alt="Model Photo" />` : `<div style="padding:60px 16px;">Model Photo</div>`}
+          </div>
+
+          <div>
+            <a href="${escapeAttr(paypalUrl)}" target="_blank" rel="noopener" style="display:block; text-decoration:none; margin-bottom:18px;">
+              <button type="button" style="width:100%; padding:16px; font-size:17px;">${t("pay_paypal_card")}</button>
+            </a>
+
+            <form onsubmit="submitVipForm(event, '${folder.id}')">
+              <div class="form-grid">
+                <div class="field-group">
+                  <label>Full Name</label>
+                  <input type="text" id="vipName" required />
+                </div>
+                <div class="field-group">
+                  <label>Gmail (Lifetime Access)</label>
+                  <input type="email" id="vipGmail" required />
+                </div>
+                <div class="field-group">
+                  <label>Payment / Transaction ID</label>
+                  <input type="text" id="vipTxId" required />
+                </div>
+                <div class="field-group">
+                  <label>Payment Screenshot</label>
+                  <input type="file" id="vipScreenshot" accept="image/*" required />
+                </div>
+              </div>
+              <button type="submit" style="width:100%; margin-top:8px;">${t("submit_proof")}</button>
+            </form>
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleVipLoginBox() {
+      document.getElementById("vipGmailUnlockBox").classList.toggle("hidden");
+    }
+
+    async function verifyVipGmail(folderId) {
+      const gmail = document.getElementById("vipCheckGmailInput").value.trim();
+      if (!gmail) return;
+      showStatus("Checking Gmail access...");
+      try {
+        const res = await fetch(`${BACKEND_URL}?action=checkVipAccess&gmail=${encodeURIComponent(gmail)}&folderId=${encodeURIComponent(folderId)}`);
+        const data = await res.json();
+        if (data.status === "success" && data.approved) {
+          document.getElementById("innerStatus").classList.add("hidden");
+          renderUnlockedVipMedia(data.media || []);
+        } else {
+          showStatus("This Gmail is not approved yet or please check spelling.");
+        }
+      } catch (e) {
+        showStatus("Error checking access.");
+      }
+    }
+
+    function renderUnlockedVipMedia(items) {
+      const container = document.getElementById("innerContent");
+      if (!items.length) {
+        container.innerHTML = `<div class="status-banner">Unlocked! No videos or photos uploaded yet.</div>`;
+        return;
+      }
+
+      container.innerHTML = `<div class="media-gallery-grid" id="unlockedGrid"></div>`;
+      const grid = document.getElementById("unlockedGrid");
+
+      items.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "media-item-card";
+        if (item.Type === "video") {
+          card.innerHTML = `
+            ${item.ThumbnailURL ? `<img class="yt-thumb" src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : ``}
+            <div class="mini-title">${escapeHtml(item.Title)}</div>
+            <div class="video-frame-wrap">
+              <iframe src="${escapeAttr(item.DriveURL)}" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+          `;
+        } else {
+          card.innerHTML = `
+            <img class="full-photo" src="${escapeAttr(item.DriveURL || item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />
+            <div class="mini-title">${escapeHtml(item.Title)}</div>
+          `;
+        }
+        grid.appendChild(card);
+      });
+    }
+
+    async function submitVipForm(e, folderId) {
+      e.preventDefault();
+      const file = document.getElementById("vipScreenshot").files[0];
+      const base64 = file ? await fileToBase64(file) : "";
+      showStatus("Submitting payment proof...");
+
+      const payload = {
+        action: "submitVipPayment",
+        folderId: folderId,
+        name: document.getElementById("vipName").value.trim(),
+        gmail: document.getElementById("vipGmail").value.trim(),
+        txId: document.getElementById("vipTxId").value.trim(),
+        screenshot: base64
+      };
+
+      const res = await postToBackend(payload);
+      if (res.status === "success") {
+        showStatus("Submitted! Once Admin approves your payment, your Gmail will get lifetime access.");
+        e.target.reset();
+      } else {
+        showStatus("Error submitting form.");
+      }
+    }
+
+    // 2. $10 GIFT FOLDER
+    function renderGiftView(folder) {
+      const modelPhoto = SITE_SETTINGS[folder.modelKey] || "";
+      const paypalUrl = getPayPalLink(folder);
+
+      document.getElementById("innerContent").innerHTML = `
+        <h2 style="font-size:24px; margin-bottom:14px;">${escapeHtml(folder.defaultTitle)}</h2>
+        <div class="paypal-split">
+          <div class="model-photo-box">
+            ${modelPhoto ? `<img src="${escapeAttr(modelPhoto)}" alt="Gift Model" />` : `<div style="padding:50px;">$10 Gift</div>`}
+          </div>
+          <div>
+            <a href="${escapeAttr(paypalUrl)}" target="_blank" rel="noopener" style="display:block; text-decoration:none;">
+              <button type="button" class="gift-mega-btn">${t("gift_10_btn")}</button>
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    // 3. STORE / SEXY DOLLS / LUCKY DRAW
+    function renderCatalogFolderView(folder) {
+      const items = PUBLIC_MEDIA.filter(m => m.FolderID === folder.id);
+      let html = `<h2 style="font-size:24px; margin-bottom:14px;">${escapeHtml(folder.defaultTitle)}</h2>`;
+
+      if (!items.length) {
+        html += `<div class="status-banner">No items listed yet.</div>`;
+      } else {
+        html += `<div class="media-gallery-grid">`;
+        items.forEach((item, idx) => {
+          html += `
+            <div class="media-item-card">
+              ${item.ThumbnailURL ? `<img class="yt-thumb" src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : ``}
+              <div class="mini-title">${escapeHtml(item.Title)}</div>
+              ${item.Price ? `<div class="mini-price">$${escapeHtml(item.Price)} USD</div>` : ``}
+              ${item.Description ? `<p style="font-size:13px; color:#d8efff;">${escapeHtml(item.Description)}</p>` : ``}
+              <button type="button" onclick="openOrderCheckout(${idx}, '${folder.id}')">Buy / Enter ($${escapeHtml(item.Price || "10")})</button>
+            </div>
+          `;
+        });
+        html += `</div>`;
+      }
+
+      html += `<div id="checkoutArea" style="margin-top:20px;"></div>`;
+      document.getElementById("innerContent").innerHTML = html;
+    }
+
+    function openOrderCheckout(index, folderId) {
+      const folder = FOLDERS_CONFIG.find(f => f.id === folderId);
+      const items = PUBLIC_MEDIA.filter(m => m.FolderID === folderId);
+      const item = items[index];
+      if (!item) return;
+
+      const modelPhoto = SITE_SETTINGS[folder.modelKey] || item.ThumbnailURL || "";
+      const paypalUrl = getPayPalLink(folder, item.PayPalLink);
+
+      document.getElementById("checkoutArea").innerHTML = `
+        <div class="panel-box" style="background:rgba(1,16,46,0.92);">
+          <h3 style="font-size:20px; margin-bottom:14px;">${escapeHtml(item.Title)} — $${escapeHtml(item.Price || "0")} USD</h3>
+          <div class="paypal-split">
+            <div class="model-photo-box">
+              ${modelPhoto ? `<img src="${escapeAttr(modelPhoto)}" alt="Model / Product" />` : ``}
+            </div>
+            <div>
+              <form onsubmit="submitOrderForm(event, '${folder.id}', '${escapeAttr(item.Title)}', '${escapeAttr(item.Price || "0")}')">
+                <div class="form-grid">
+                  <div class="field-group"><label>Full Name</label><input type="text" id="ordName" required /></div>
+                  <div class="field-group"><label>Gmail</label><input type="email" id="ordGmail" required /></div>
+                  <div class="field-group"><label>WhatsApp / Mobile Number</label><input type="text" id="ordPhone" required /></div>
+                  <div class="field-group"><label>Country</label><input type="text" id="ordCountry" required /></div>
+                  <div class="field-group"><label>City</label><input type="text" id="ordCity" required /></div>
+                  <div class="field-group"><label>Home / Office / Shop / Company Address</label><input type="text" id="ordAddress" required /></div>
+                  <div class="field-group"><label>Payment / Transaction ID</label><input type="text" id="ordTxId" required /></div>
+                  <div class="field-group"><label>Payment Screenshot</label><input type="file" id="ordScreenshot" accept="image/*" required /></div>
+                </div>
+
+                <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:14px;">
+                  <a href="${escapeAttr(paypalUrl)}" target="_blank" rel="noopener" style="flex:1; min-width:220px; text-decoration:none;">
+                    <button type="button" style="width:100%;">${t("pay_paypal_card")}</button>
+                  </a>
+                  <button type="submit" style="flex:1; min-width:220px;">${t("submit_proof")}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById("checkoutArea").scrollIntoView({ behavior: "smooth" });
+    }
+
+    async function submitOrderForm(e, folderId, productTitle, price) {
+      e.preventDefault();
+      const file = document.getElementById("ordScreenshot").files[0];
+      const base64 = file ? await fileToBase64(file) : "";
+      showStatus("Sending order to Admin Dashboard...");
+
+      const payload = {
+        action: "submitOrder",
+        folderId: folderId,
+        productTitle: productTitle,
+        price: price,
+        name: document.getElementById("ordName").value.trim(),
+        gmail: document.getElementById("ordGmail").value.trim(),
+        whatsapp: document.getElementById("ordPhone").value.trim(),
+        country: document.getElementById("ordCountry").value.trim(),
+        city: document.getElementById("ordCity").value.trim(),
+        address: document.getElementById("ordAddress").value.trim(),
+        txId: document.getElementById("ordTxId").value.trim(),
+        screenshot: base64
+      };
+
+      const res = await postToBackend(payload);
+      if (res.status === "success") {
+        showStatus("Order received! Once approved, your PDF receipt and delivery notice will be sent to your Gmail.");
+        e.target.reset();
+      } else {
+        showStatus("Error submitting order.");
+      }
+    }
+
+    // 4. MEET / MESSAGE SOFIA JENNY TABORDA (FREE MESSAGE + AUTO REPLY + $10 GIFT)
+    function renderMeetMessageView(folder) {
+      const paypalUrl = getPayPalLink(folder);
+      document.getElementById("innerContent").innerHTML = `
+        <h2 style="font-size:24px; margin-bottom:14px;">${escapeHtml(folder.defaultTitle)}</h2>
+        <form onsubmit="submitFreeMessage(event)" style="max-width:680px;">
+          <div class="form-grid">
+            <div class="field-group"><label>Your Name</label><input type="text" id="msgName" required /></div>
+            <div class="field-group"><label>Your Gmail</label><input type="email" id="msgGmail" required /></div>
+            <div class="field-group"><label>WhatsApp / Phone</label><input type="text" id="msgPhone" /></div>
+          </div>
+          <div class="field-group">
+            <label>Your Message</label>
+            <textarea id="msgText" rows="4" required></textarea>
+          </div>
+          <button type="submit">${t("send_free_msg")}</button>
+        </form>
+        <div id="autoReplyBox" class="hidden" style="margin-top:18px; padding:18px; border-radius:16px; background:rgba(0,70,175,0.65); border:1.5px solid #ffffff;">
+          <p style="font-size:17px; margin-bottom:14px;">${t("auto_msg_reply")}</p>
+          <a href="${escapeAttr(paypalUrl)}" target="_blank" rel="noopener" style="text-decoration:none;">
+            <button type="button">${t("gift_10_btn")}</button>
+          </a>
+        </div>
+      `;
+    }
+
+    async function submitFreeMessage(e) {
+      e.preventDefault();
+      const payload = {
+        action: "submitMessage",
+        name: document.getElementById("msgName").value.trim(),
+        gmail: document.getElementById("msgGmail").value.trim(),
+        whatsapp: document.getElementById("msgPhone").value.trim(),
+        message: document.getElementById("msgText").value.trim()
+      };
+      await postToBackend(payload);
+      document.getElementById("autoReplyBox").classList.remove("hidden");
+      e.target.reset();
+    }
+
+    // 5. ACADEMY VIEW (SOCIAL MEDIA + AI EARNING)
+    function renderAcademyView(folder) {
+      const items = PUBLIC_MEDIA.filter(m => m.FolderID === "academy");
+      let html = `<h2 style="font-size:24px; margin-bottom:14px;">${escapeHtml(folder.defaultTitle)}</h2>`;
+      if (!items.length) {
+        html += `<div class="status-banner">AI &amp; Social Media earning lessons will appear here.</div>`;
+      } else {
+        html += `<div class="media-gallery-grid">`;
+        items.forEach(item => {
+          html += `
+            <div class="media-item-card">
+              ${item.ThumbnailURL ? `<img class="yt-thumb" src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : ``}
+              <div class="mini-title">${escapeHtml(item.Title)}</div>
+              ${item.Description ? `<p style="font-size:13px; color:#d8efff;">${escapeHtml(item.Description)}</p>` : ``}
+              ${item.DriveURL ? `<div class="video-frame-wrap"><iframe src="${escapeAttr(item.DriveURL)}" allow="autoplay; fullscreen" allowfullscreen></iframe></div>` : ``}
+            </div>
+          `;
+        });
+        html += `</div>`;
+      }
+      document.getElementById("innerContent").innerHTML = html;
+    }
+
+    async function postToBackend(payload) {
+      const res = await fetch(BACKEND_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+      return await res.json();
+    }
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function showStatus(msg) {
+      const el = document.getElementById("innerStatus");
+      el.classList.remove("hidden");
+      el.textContent = msg;
+    }
+
+    function escapeHtml(str) {
+      return String(str || "").replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+    }
+
+    function escapeAttr(str) {
+      return escapeHtml(str);
+    }
+
+    loadSiteData();
+  </script>
+</body>
+</html>
