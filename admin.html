@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Admin Dashboard - Sofia Jenny Taborda</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      color: #ffffff;
+      background-color: #02091c;
+      background-image:
+        radial-gradient(circle at 20% 15%, rgba(0, 170, 255, 0.45), transparent 42%),
+        radial-gradient(circle at 82% 25%, rgba(0, 85, 255, 0.5), transparent 48%),
+        linear-gradient(145deg, #020c26 0%, #052263 50%, #020a1f 100%);
+      background-attachment: fixed;
+      padding: 16px;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-weight: 700;
+    }
+
+    button {
+      color: #ffffff !important;
+      cursor: pointer;
+      border: 1.5px solid rgba(160, 228, 255, 0.75);
+      background: linear-gradient(135deg, #0077ff 0%, #00c3ff 100%);
+      box-shadow: 0 0 16px rgba(0, 174, 255, 0.45);
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-size: 13px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 22px rgba(0, 200, 255, 0.75);
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #009e49 0%, #00d665 100%);
+      border-color: #b7ffd8;
+      box-shadow: 0 0 14px rgba(0, 214, 101, 0.45);
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #c81e3a 0%, #ff3b5c 100%);
+      border-color: #ffc2cd;
+      box-shadow: 0 0 14px rgba(255, 59, 92, 0.45);
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .glass-box {
+      background: rgba(6, 28, 78, 0.76);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(85, 196, 255, 0.45);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .login-card {
+      max-width: 430px;
+      margin: 70px auto;
+      text-align: center;
+    }
+
+    .top-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      background: rgba(3, 20, 58, 0.85);
+      border: 1.5px solid rgba(115, 205, 255, 0.45);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 26px;
+      color: #7ee3ff;
+      margin-top: 4px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .field-group label {
+      font-size: 13px;
+      color: #d6f1ff;
+    }
+
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(120, 205, 255, 0.55);
+      background: rgba(2, 14, 42, 0.9);
+      color: #ffffff;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(110, 195, 255, 0.25);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: rgba(0, 85, 215, 0.45);
+      color: #ffffff;
+    }
+
+    .photo-setting-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(110, 195, 255, 0.2);
+    }
+
+    .preview-thumb {
+      max-height: 55px;
+      max-width: 95px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: #010b22;
+    }
+
+    .status-toast {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 999;
+      background: #0055dd;
+      color: #ffffff;
+      border: 1.5px solid #ffffff;
+      border-radius: 12px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .photo-setting-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ADMIN LOGIN -->
+    <div id="loginBox" class="glass-box login-card">
+      <h2 style="font-size:22px; margin-bottom:10px;">🔒 Private Admin Login</h2>
+      <p style="font-size:13px; color:#cdeeff; margin-bottom:16px;">Sofia Jenny Taborda Official Dashboard</p>
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="field-group">
+          <label>Admin Password</label>
+          <input type="password" id="adminPassInput" required />
+        </div>
+        <button type="submit" style="width:100%; padding:12px; font-size:15px;">Login to Dashboard</button>
+      </form>
+    </div>
+
+    <!-- DASHBOARD MAIN -->
+    <div id="dashboardBox" class="hidden">
+      <div class="glass-box top-header">
+        <div>
+          <h1 style="font-size:22px;">Sofia Jenny Taborda — Admin Dashboard</h1>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button onclick="refreshDashboard()">↻ Refresh</button>
+          <button class="btn-red" onclick="logoutAdmin()">Logout</button>
+        </div>
+      </div>
+
+      <div class="tabs-bar">
+        <button onclick="switchTab('vipTab')">VIP Approvals</button>
+        <button onclick="switchTab('ordersTab')">Store, Dolls &amp; Lucky Draw Orders</button>
+        <button onclick="switchTab('uploadTab')">Upload &amp; Delete Media/Products</button>
+        <button onclick="switchTab('photosTab')">Photos, Logo &amp; PayPal Links</button>
+        <button onclick="switchTab('messagesTab')">Free Messages</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div>VIP Requests</div><div class="stat-num" id="statVip">0</div></div>
+        <div class="stat-card"><div>Orders</div><div class="stat-num" id="statOrders">0</div></div>
+        <div class="stat-card"><div>Uploaded Items</div><div class="stat-num" id="statMedia">0</div></div>
+        <div class="stat-card"><div>Messages</div><div class="stat-num" id="statMsg">0</div></div>
+      </div>
+
+      <!-- TAB 1: VIP APPROVALS -->
+      <section id="vipTab" class="glass-box">
+        <h2 style="font-size:19px; margin-bottom:12px;">VIP Folders Payments (Videos &amp; Photos / WhatsApp)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Folder</th><th>Name</th><th>Gmail</th><th>Tx ID</th><th>Screenshot</th><th>Status</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="vipTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 2: STORE / DOLLS / LUCKY DRAW ORDERS -->
+      <section id="ordersTab" class="glass-box hidden">
+        <h2 style="font-size:19px; margin-bottom:12px;">Store, Sexy Dolls &amp; Lucky Draw Orders</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Folder</th><th>Item</th><th>Price</th><th>Customer</th><th>Gmail &amp; WhatsApp</th><th>Address</th><th>Screenshot</th><th>Status</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 3: UPLOAD & DELETE -->
+      <section id="uploadTab" class="glass-box hidden">
+        <h2 style="font-size:19px; margin-bottom:12px;">Upload Video (up to 500MB Drive Link), Photo (up to 100MB) or Product</h2>
+        <form onsubmit="handleAddMedia(event)">
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Target Folder</label>
+              <select id="upFolder">
+                <option value="videos_photos">1. Sofia Jenny Taborda Videos &amp; Photos (VIP)</option>
+                <option value="whatsapp">2. Sofia Jenny Taborda WhatsApp (VIP)</option>
+                <option value="luckydraw">4. Sofia Jenny Taborda Lucky Draw</option>
+                <option value="store">5. Sofia Jenny Taborda Store</option>
+                <option value="dolls">6. Sofia Jenny Taborda Sexy Dolls</option>
+                <option value="academy">8. Sofia Jenny Taborda Academy</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Content Type</label>
+              <select id="upType">
+                <option value="video">Video (Drive Link / Embed)</option>
+                <option value="photo">Photo (Full Uncropped)</option>
+                <option value="product">Store / Dolls / Lucky Draw Product</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Title</label>
+              <input type="text" id="upTitle" required />
+            </div>
+            <div class="field-group">
+              <label>Price ($ USD - for Store / Lucky Draw / Dolls)</label>
+              <input type="text" id="upPrice" placeholder="e.g. 25" />
+            </div>
+            <div class="field-group">
+              <label>Custom PayPal Link (Optional)</label>
+              <input type="text" id="upPayPal" placeholder="https://www.paypal.com/..." />
+            </div>
+            <div class="field-group">
+              <label>Google Drive Link (for Video/Photo) OR Upload Photo File</label>
+              <input type="text" id="upDriveUrl" placeholder="Paste Google Drive share link" />
+              <input type="file" id="upPhotoFile" accept="image/*" style="margin-top:6px;" />
+            </div>
+            <div class="field-group">
+              <label>YouTube Size Thumbnail (16:9 - Upload or Drive Link)</label>
+              <input type="file" id="upThumbFile" accept="image/*" />
+              <input type="text" id="upThumbUrl" placeholder="Or paste Thumbnail link" style="margin-top:6px;" />
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Description / Notes</label>
+            <textarea id="upDesc" rows="2"></textarea>
+          </div>
+          <button type="submit">Publish Item</button>
+        </form>
+
+        <h3 style="font-size:17px; margin:22px 0 10px;">All Uploaded Items (Delete Anytime)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Folder</th><th>Type</th><th>Title</th><th>Price</th><th>Preview</th><th>Delete</th></tr>
+            </thead>
+            <tbody id="mediaTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 4: PHOTOS, LOGO & PAYPAL LINKS -->
+      <section id="photosTab" class="glass-box hidden">
+        <h2 style="font-size:19px; margin-bottom:12px;">Change Logo, Header Photo, Folder Photos, Model Photos &amp; PayPal Links</h2>
+        <div id="settingsListBox"></div>
+      </section>
+
+      <!-- TAB 5: MESSAGES -->
+      <section id="messagesTab" class="glass-box hidden">
+        <h2 style="font-size:19px; margin-bottom:12px;">Free Messages from Meet Sofia Jenny Taborda</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Gmail</th><th>WhatsApp</th><th>Message</th><th>Time</th><th>Action</th></tr>
+            </thead>
+            <tbody id="messagesTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="toastBox" class="status-toast hidden"></div>
+
+  <script>
+    const BACKEND_URL = "https://script.google.com/macros/s/AKfycbw1S3rKmIHA0KUC4hjC9qPc1PykcMsY96_qnKDb94fTlzEHU8aNnniXfTn_yipz112PJA/exec";
+
+    const PHOTO_AND_LINK_FIELDS = [
+      { key: "logo_url", label: "Site Logo (Upload or Link)", isImage: true },
+      { key: "main_header_photo", label: "Main Home Header Photo", isImage: true },
+      { key: "gift_paypal_link", label: "Main $10 Gift & Default PayPal Link", isImage: false },
+      { key: "vip_videos_paypal_link", label: "Folder 1 (Videos & Photos) PayPal Link", isImage: false },
+      { key: "vip_whatsapp_paypal_link", label: "Folder 2 (WhatsApp) PayPal Link", isImage: false },
+      { key: "cover_videos_photos", label: "Home Card Photo: Sofia Jenny Taborda Videos & Photos", isImage: true },
+      { key: "cover_whatsapp", label: "Home Card Photo: Sofia Jenny Taborda WhatsApp", isImage: true },
+      { key: "cover_gift", label: "Home Card Photo: Sofia Jenny Taborda Gift ($10)", isImage: true },
+      { key: "cover_luckydraw", label: "Home Card Photo: Sofia Jenny Taborda Lucky Draw", isImage: true },
+      { key: "cover_store", label: "Home Card Photo: Sofia Jenny Taborda Store", isImage: true },
+      { key: "cover_dolls", label: "Home Card Photo: Sofia Jenny Taborda Sexy Dolls", isImage: true },
+      { key: "cover_meet", label: "Home Card Photo: Meet Sofia Jenny Taborda", isImage: true },
+      { key: "cover_academy", label: "Home Card Photo: Sofia Jenny Taborda Academy", isImage: true },
+      { key: "banner_videos_photos", label: "Inside Banner Photo: Videos & Photos", isImage: true },
+      { key: "banner_whatsapp", label: "Inside Banner Photo: WhatsApp", isImage: true },
+      { key: "banner_luckydraw", label: "Inside Banner Photo: Lucky Draw", isImage: true },
+      { key: "banner_store", label: "Inside Banner Photo: Store", isImage: true },
+      { key: "banner_dolls", label: "Inside Banner Photo: Sexy Dolls", isImage: true },
+      { key: "banner_meet", label: "Inside Banner Photo: Meet Sofia", isImage: true },
+      { key: "banner_academy", label: "Inside Banner Photo: Academy", isImage: true },
+      { key: "paypal_model_videos_photos", label: "PayPal Page Model Photo: Videos & Photos", isImage: true },
+      { key: "paypal_model_whatsapp", label: "PayPal Page Model Photo: WhatsApp", isImage: true },
+      { key: "paypal_model_gift", label: "PayPal Page Model Photo: $10 Gift", isImage: true },
+      { key: "paypal_model_luckydraw", label: "PayPal Page Model Photo: Lucky Draw", isImage: true },
+      { key: "paypal_model_store", label: "PayPal Page Model Photo: Store", isImage: true },
+      { key: "paypal_model_dolls", label: "PayPal Page Model Photo: Sexy Dolls", isImage: true }
+    ];
+
+    let ADMIN_PASS = "";
+    let DB_DATA = { settings: {}, media: [], vipPayments: [], orders: [], messages: [] };
+
+    function toast(msg) {
+      const el = document.getElementById("toastBox");
+      el.textContent = msg;
+      el.classList.remove("hidden");
+      clearTimeout(window._t);
+      window._t = setTimeout(() => el.classList.add("hidden"), 3500);
+    }
+
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      ADMIN_PASS = document.getElementById("adminPassInput").value;
+      toast("Logging in...");
+      const res = await adminPost({ action: "adminLogin" });
+      if (res.status === "success") {
+        DB_DATA = res;
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("dashboardBox").classList.remove("hidden");
+        renderAllSections();
+        toast("Welcome to Admin Dashboard!");
+      } else {
+        toast(res.message || "Invalid Password!");
+      }
+    }
+
+    function logoutAdmin() {
+      ADMIN_PASS = "";
+      location.reload();
+    }
+
+    async function refreshDashboard() {
+      toast("Refreshing...");
+      const res = await adminPost({ action: "adminLogin" });
+      if (res.status === "success") {
+        DB_DATA = res;
+        renderAllSections();
+        toast("Updated!");
+      }
+    }
+
+    function switchTab(tabId) {
+      ["vipTab", "ordersTab", "uploadTab", "photosTab", "messagesTab"].forEach(id => {
+        document.getElementById(id).classList.toggle("hidden", id !== tabId);
+      });
+    }
+
+    function renderAllSections() {
+      document.getElementById("statVip").textContent = (DB_DATA.vipPayments || []).length;
+      document.getElementById("statOrders").textContent = (DB_DATA.orders || []).length;
+      document.getElementById("statMedia").textContent = (DB_DATA.media || []).length;
+      document.getElementById("statMsg").textContent = (DB_DATA.messages || []).length;
+
+      renderVipTable();
+      renderOrdersTable();
+      renderMediaTable();
+      renderSettingsBox();
+      renderMessagesTable();
+    }
+
+    function renderVipTable() {
+      const tbody = document.getElementById("vipTableBody");
+      tbody.innerHTML = "";
+      (DB_DATA.vipPayments || []).forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(row.FolderID)}</td>
+          <td>${esc(row.Name)}</td>
+          <td>${esc(row.Gmail)}</td>
+          <td>${esc(row.TransactionID)}</td>
+          <td>${row.ScreenshotURL ? `<a href="${esc(row.ScreenshotURL)}" target="_blank" style="color:#7ee3ff;">View Proof</a>` : `-`}</td>
+          <td>${esc(row.Status)}</td>
+          <td style="display:flex; gap:6px; flex-wrap:wrap;">
+            ${row.Status !== "Approved" ? `<button class="btn-green" onclick="approveVip('${esc(row.ID)}')">Approve</button>` : ``}
+            <button class="btn-red" onclick="deleteRow('VIP_Payments', '${esc(row.ID)}')">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderOrdersTable() {
+      const tbody = document.getElementById("ordersTableBody");
+      tbody.innerHTML = "";
+      (DB_DATA.orders || []).forEach(row => {
+        const addr = `${row.Address || ""}, ${row.City || ""}, ${row.Country || ""}`;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(row.FolderID)}</td>
+          <td>${esc(row.ProductTitle)}</td>
+          <td>$${esc(row.Price)}</td>
+          <td>${esc(row.Name)}</td>
+          <td>${esc(row.Gmail)}<br>${esc(row.WhatsApp)}</td>
+          <td>${esc(addr)}</td>
+          <td>${row.ScreenshotURL ? `<a href="${esc(row.ScreenshotURL)}" target="_blank" style="color:#7ee3ff;">Proof</a>` : `-`}</td>
+          <td>${esc(row.Status)}</td>
+          <td style="display:flex; gap:6px; flex-wrap:wrap;">
+            ${row.Status !== "Approved" ? `<button class="btn-green" onclick="approveOrder('${esc(row.ID)}')">Approve &amp; Send PDF</button>` : ``}
+            <button class="btn-red" onclick="deleteRow('Orders', '${esc(row.ID)}')">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderMediaTable() {
+      const tbody = document.getElementById("mediaTableBody");
+      tbody.innerHTML = "";
+      (DB_DATA.media || []).forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(item.FolderID)}</td>
+          <td>${esc(item.Type)}</td>
+          <td>${esc(item.Title)}</td>
+          <td>${item.Price ? `$${esc(item.Price)}` : `-`}</td>
+          <td>${item.ThumbnailURL ? `<img class="preview-thumb" src="${esc(item.ThumbnailURL)}" alt="Thumb" />` : `-`}</td>
+          <td><button class="btn-red" onclick="deleteRow('Media', '${esc(item.ID)}')">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderSettingsBox() {
+      const box = document.getElementById("settingsListBox");
+      box.innerHTML = "";
+      PHOTO_AND_LINK_FIELDS.forEach(cfg => {
+        const currentVal = (DB_DATA.settings && DB_DATA.settings[cfg.key]) || "";
+        const row = document.createElement("div");
+        row.className = "photo-setting-row";
+        row.innerHTML = `
+          <div>
+            <div style="font-size:14px;">${esc(cfg.label)}</div>
+            ${cfg.isImage && currentVal ? `<img class="preview-thumb" src="${esc(currentVal)}" style="margin-top:6px;" />` : ``}
+          </div>
+          <div>
+            <input type="text" id="val_${cfg.key}" value="${esc(currentVal)}" placeholder="Paste URL or Drive Link" style="width:100%; padding:9px; border-radius:8px; border:1px solid #7cd0ff; background:#02102c; color:#fff;" />
+            ${cfg.isImage ? `<input type="file" id="file_${cfg.key}" accept="image/*" style="margin-top:6px; font-size:12px;" />` : ``}
+          </div>
+          <div>
+            <button onclick="saveSettingField('${cfg.key}', ${cfg.isImage})">Save</button>
+          </div>
+        `;
+        box.appendChild(row);
+      });
+    }
+
+    function renderMessagesTable() {
+      const tbody = document.getElementById("messagesTableBody");
+      tbody.innerHTML = "";
+      (DB_DATA.messages || []).forEach(m => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(m.Name)}</td>
+          <td>${esc(m.Gmail)}</td>
+          <td>${esc(m.WhatsApp)}</td>
+          <td>${esc(m.Message)}</td>
+          <td>${esc(m.CreatedAt)}</td>
+          <td><button class="btn-red" onclick="deleteRow('Messages', '${esc(m.ID)}')">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function saveSettingField(key, isImage) {
+      let value = document.getElementById("val_" + key).value.trim();
+      const fileInput = isImage ? document.getElementById("file_" + key) : null;
+      if (fileInput && fileInput.files && fileInput.files[0]) {
+        value = await fileToBase64(fileInput.files[0]);
+      }
+      toast("Saving...");
+      const res = await adminPost({ action: "updateSetting", key: key, value: value, isImage: isImage });
+      if (res.status === "success") {
+        toast("Saved!");
+        await refreshDashboard();
+      } else {
+        toast("Save failed.");
+      }
+    }
+
+    async function handleAddMedia(e) {
+      e.preventDefault();
+      toast("Uploading item...");
+
+      let driveUrl = document.getElementById("upDriveUrl").value.trim();
+      const photoFile = document.getElementById("upPhotoFile").files[0];
+      if (photoFile) {
+        driveUrl = await fileToBase64(photoFile);
+      }
+
+      let thumbUrl = document.getElementById("upThumbUrl").value.trim();
+      const thumbFile = document.getElementById("upThumbFile").files[0];
+      if (thumbFile) {
+        thumbUrl = await fileToBase64(thumbFile);
+      }
+
+      const payload = {
+        action: "addMedia",
+        folderId: document.getElementById("upFolder").value,
+        type: document.getElementById("upType").value,
+        title: document.getElementById("upTitle").value.trim(),
+        price: document.getElementById("upPrice").value.trim(),
+        paypalLink: document.getElementById("upPayPal").value.trim(),
+        driveUrl: driveUrl,
+        thumbnailUrl: thumbUrl,
+        description: document.getElementById("upDesc").value.trim()
+      };
+
+      const res = await adminPost(payload);
+      if (res.status === "success") {
+        toast("Published successfully!");
+        e.target.reset();
+        await refreshDashboard();
+      } else {
+        toast("Upload error.");
+      }
+    }
+
+    async function approveVip(id) {
+      toast("Approving VIP Gmail...");
+      const res = await adminPost({ action: "approveVip", id: id });
+      if (res.status === "success") {
+        toast("VIP Approved & Email Sent!");
+        await refreshDashboard();
+      }
+    }
+
+    async function approveOrder(id) {
+      toast("Approving & sending PDF receipt...");
+      const res = await adminPost({ action: "approveOrder", id: id });
+      if (res.status === "success") {
+        toast("Approved & PDF Receipt Sent to Gmail!");
+        await refreshDashboard();
+      }
+    }
+
+    async function deleteRow(sheetName, id) {
+      toast("Deleting...");
+      const res = await adminPost({ action: "deleteItem", sheetName: sheetName, id: id });
+      if (res.status === "success") {
+        toast("Deleted!");
+        await refreshDashboard();
+      }
+    }
+
+    async function adminPost(obj) {
+      obj.password = ADMIN_PASS;
+      const res = await fetch(BACKEND_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(obj)
+      });
+      return await res.json();
+    }
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function esc(s) {
+      return String(s || "").replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+    }
+  </script>
+</body>
+</html>
