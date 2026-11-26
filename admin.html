@@ -3,32 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard — Sofia Jenny Taborda Official</title>
+  <title>Private Admin Dashboard - Sofia Jenny Taborda</title>
   <style>
-    :root {
-      --bg-dark: #02091c;
-      --glass-bg: rgba(6, 28, 78, 0.78);
-      --glass-border: rgba(85, 196, 255, 0.45);
-      --white: #ffffff;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-weight: 700;
-      color: var(--white);
-      background-color: var(--bg-dark);
+      color: #ffffff;
+      background-color: #02091c;
       background-image:
-        radial-gradient(circle at 20% 15%, rgba(0, 170, 255, 0.4), transparent 42%),
-        radial-gradient(circle at 82% 25%, rgba(0, 85, 255, 0.45), transparent 48%),
-        linear-gradient(145deg, #020c26 0%, #052263 48%, #020a1f 100%);
+        radial-gradient(circle at 20% 15%, rgba(0, 170, 255, 0.45), transparent 42%),
+        radial-gradient(circle at 82% 25%, rgba(0, 85, 255, 0.5), transparent 48%),
+        linear-gradient(145deg, #020c26 0%, #052263 50%, #020a1f 100%);
       background-attachment: fixed;
       padding: 16px;
     }
-
-    .container { max-width: 1200px; margin: 0 auto; }
 
     button, input, select, textarea {
       font-family: inherit;
@@ -36,26 +31,53 @@
     }
 
     button {
-      color: #ffffff;
+      color: #ffffff !important;
       cursor: pointer;
-      border: 1.5px solid rgba(160, 228, 255, 0.8);
+      border: 1.5px solid rgba(160, 228, 255, 0.75);
       background: linear-gradient(135deg, #0077ff 0%, #00c3ff 100%);
+      box-shadow: 0 0 16px rgba(0, 174, 255, 0.45);
       border-radius: 10px;
-      padding: 10px 16px;
-      transition: transform 0.15s ease, filter 0.15s ease;
+      padding: 9px 14px;
+      font-size: 13px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    button:hover { transform: translateY(-1px); filter: brightness(1.08); }
-    button.danger { background: linear-gradient(135deg, #cc1f3a 0%, #ff4b66 100%); }
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 22px rgba(0, 200, 255, 0.75);
+    }
 
-    .card {
-      background: var(--glass-bg);
+    .btn-green {
+      background: linear-gradient(135deg, #009e49 0%, #00d665 100%);
+      border-color: #b7ffd8;
+      box-shadow: 0 0 14px rgba(0, 214, 101, 0.45);
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #c81e3a 0%, #ff3b5c 100%);
+      border-color: #ffc2cd;
+      box-shadow: 0 0 14px rgba(255, 59, 92, 0.45);
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .glass-box {
+      background: rgba(6, 28, 78, 0.76);
       backdrop-filter: blur(14px);
-      border: 1.5px solid var(--glass-border);
+      border: 1.5px solid rgba(85, 196, 255, 0.45);
       border-radius: 18px;
-      padding: 20px;
+      padding: 18px;
       margin-bottom: 18px;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .login-card {
+      max-width: 430px;
+      margin: 70px auto;
+      text-align: center;
     }
 
     .top-header {
@@ -64,519 +86,583 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 16px;
     }
 
-    .tabs {
+    .tabs-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 18px;
     }
 
-    .tab-btn.active {
-      border: 2px solid #ffffff;
-      box-shadow: 0 0 18px rgba(0, 195, 255, 0.85);
-    }
-
-    .grid-2 {
+    .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
     }
 
-    .folder-setting-box {
-      background: rgba(2, 16, 48, 0.82);
-      border: 1.5px solid rgba(120, 205, 255, 0.45);
+    .stat-card {
+      background: rgba(3, 20, 58, 0.85);
+      border: 1.5px solid rgba(115, 205, 255, 0.45);
       border-radius: 14px;
       padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      text-align: center;
     }
 
-    .folder-setting-box h3 {
-      font-size: 16px;
+    .stat-num {
+      font-size: 26px;
       color: #7ee3ff;
-      border-bottom: 1px solid rgba(126, 227, 255, 0.3);
-      padding-bottom: 6px;
+      margin-top: 4px;
     }
 
-    .field {
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .field-group {
       display: flex;
       flex-direction: column;
       gap: 5px;
+      margin-bottom: 10px;
     }
 
-    .field label { font-size: 13px; color: #d6f1ff; }
+    .field-group label {
+      font-size: 13px;
+      color: #d6f1ff;
+    }
 
-    .field input, .field select, .field textarea {
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
       width: 100%;
-      padding: 9px 11px;
-      border-radius: 9px;
+      padding: 10px 12px;
+      border-radius: 10px;
       border: 1.5px solid rgba(120, 205, 255, 0.55);
-      background: rgba(2, 14, 42, 0.92);
+      background: rgba(2, 14, 42, 0.9);
       color: #ffffff;
-      font-size: 13.5px;
+      font-size: 13px;
       outline: none;
     }
 
-    .row-inline {
-      display: flex;
-      gap: 8px;
-      align-items: center;
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
     }
 
-    .status-msg {
-      padding: 12px 15px;
-      border-radius: 12px;
-      background: rgba(0, 150, 255, 0.25);
-      border: 1px solid rgba(140, 220, 255, 0.7);
-      margin-bottom: 14px;
-      font-size: 14px;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
     }
 
-    .item-row {
-      background: rgba(2, 16, 48, 0.85);
-      border: 1px solid rgba(120, 205, 255, 0.4);
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(110, 195, 255, 0.25);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: rgba(0, 85, 215, 0.45);
+      color: #ffffff;
+    }
+
+    .photo-setting-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
       gap: 10px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(110, 195, 255, 0.2);
     }
 
-    .hidden { display: none !important; }
+    .preview-thumb {
+      max-height: 55px;
+      max-width: 95px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: #010b22;
+    }
+
+    .status-toast {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 999;
+      background: #0055dd;
+      color: #ffffff;
+      border: 1.5px solid #ffffff;
+      border-radius: 12px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .photo-setting-row {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Login Panel -->
-    <div id="loginPanel" class="card" style="max-width:440px; margin:60px auto;">
-      <h2 style="margin-bottom:14px; text-align:center;">🔐 Admin Dashboard Login</h2>
-      <div class="field" style="margin-bottom:14px;">
-        <label>Admin Password</label>
-        <input type="password" id="adminPassInput" placeholder="Enter Admin Password" />
-      </div>
-      <button type="button" style="width:100%;" onclick="loginAdmin()">Login</button>
-      <div id="loginError" class="status-msg hidden" style="margin-top:12px;"></div>
+    <!-- ADMIN LOGIN -->
+    <div id="loginBox" class="glass-box login-card">
+      <h2 style="font-size:22px; margin-bottom:10px;">🔒 Private Admin Login</h2>
+      <p style="font-size:13px; color:#cdeeff; margin-bottom:16px;">Sofia Jenny Taborda Official Dashboard</p>
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="field-group">
+          <label>Admin Password</label>
+          <input type="password" id="adminPassInput" required />
+        </div>
+        <button type="submit" style="width:100%; padding:12px; font-size:15px;">Login to Dashboard</button>
+      </form>
     </div>
 
-    <!-- Main Dashboard -->
-    <div id="dashboardPanel" class="hidden">
-      <div class="card top-header">
-        <h2>⚙️ Sofia Jenny Taborda — Admin Dashboard</h2>
-        <div style="display:flex; gap:10px;">
-          <a href="index.html" target="_blank" style="text-decoration:none;">
-            <button type="button">🌐 View Live Site</button>
-          </a>
-          <button type="button" class="danger" onclick="logoutAdmin()">Logout</button>
+    <!-- DASHBOARD MAIN -->
+    <div id="dashboardBox" class="hidden">
+      <div class="glass-box top-header">
+        <div>
+          <h1 style="font-size:22px;">Sofia Jenny Taborda — Admin Dashboard</h1>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="index.html" target="_blank" style="text-decoration:none;"><button type="button">🌐 Live Site</button></a>
+          <button type="button" onclick="refreshDashboard()">↻ Refresh</button>
+          <button type="button" class="btn-red" onclick="logoutAdmin()">Logout</button>
         </div>
       </div>
 
-      <div id="globalStatus" class="status-msg hidden"></div>
-
-      <div class="tabs">
-        <button type="button" class="tab-btn active" onclick="switchTab('settingsTab', this)">🖼️ Photos, Logo &amp; PayPal Links</button>
-        <button type="button" class="tab-btn" onclick="switchTab('mediaTab', this)">📤 Upload &amp; Delete Media/Products</button>
-        <button type="button" class="tab-btn" onclick="switchTab('vipTab', this)">🔑 VIP Approvals</button>
-        <button type="button" class="tab-btn" onclick="switchTab('ordersTab', this)">🛒 Store, Dolls &amp; Lucky Draw Orders</button>
-        <button type="button" class="tab-btn" onclick="switchTab('messagesTab', this)">💬 Free Messages</button>
+      <div class="tabs-bar">
+        <button type="button" onclick="switchTab('vipTab')">VIP Approvals</button>
+        <button type="button" onclick="switchTab('ordersTab')">Store, Dolls &amp; Lucky Draw Orders</button>
+        <button type="button" onclick="switchTab('uploadTab')">Upload &amp; Delete Media/Products</button>
+        <button type="button" onclick="switchTab('photosTab')">Photos, Logo &amp; PayPal Links</button>
+        <button type="button" onclick="switchTab('messagesTab')">Free Messages</button>
       </div>
 
-      <!-- TAB 1: Photos, Logo & PayPal Links -->
-      <section id="settingsTab" class="card">
-        <h2 style="margin-bottom:14px;">🖼️ Site Logo, Header Photo &amp; All 8 Folders (Cover + Inside Banner + Model Photo)</h2>
+      <div class="stats-grid">
+        <div class="stat-card"><div>VIP Requests</div><div class="stat-num" id="statVip">0</div></div>
+        <div class="stat-card"><div>Orders</div><div class="stat-num" id="statOrders">0</div></div>
+        <div class="stat-card"><div>Uploaded Items</div><div class="stat-num" id="statMedia">0</div></div>
+        <div class="stat-card"><div>Messages</div><div class="stat-num" id="statMsg">0</div></div>
+      </div>
 
-        <div class="grid-2" style="margin-bottom:20px;">
-          <div class="folder-setting-box">
-            <h3>🌐 Main Site Logo &amp; Header</h3>
-            <div class="field">
-              <label>Site Logo (Upload Photo)</label>
-              <div class="row-inline">
-                <input type="file" id="file_logo_url" accept="image/*" />
-                <button type="button" onclick="uploadSettingImage('logo_url', 'file_logo_url')">Save</button>
-              </div>
-            </div>
-            <div class="field">
-              <label>Main Home Header Photo (Upload Photo)</label>
-              <div class="row-inline">
-                <input type="file" id="file_main_header_photo" accept="image/*" />
-                <button type="button" onclick="uploadSettingImage('main_header_photo', 'file_main_header_photo')">Save</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="folder-setting-box">
-            <h3>💳 Fixed PayPal Links</h3>
-            <div class="field">
-              <label>Videos &amp; Photos ($40) PayPal Link</label>
-              <div class="row-inline">
-                <input type="text" id="set_vip_videos_paypal_link" placeholder="https://www.paypal.com/ncp/payment/..." />
-                <button type="button" onclick="saveSettingText('vip_videos_paypal_link')">Save</button>
-              </div>
-            </div>
-            <div class="field">
-              <label>WhatsApp ($60) PayPal Link</label>
-              <div class="row-inline">
-                <input type="text" id="set_vip_whatsapp_paypal_link" placeholder="https://www.paypal.com/ncp/payment/..." />
-                <button type="button" onclick="saveSettingText('vip_whatsapp_paypal_link')">Save</button>
-              </div>
-            </div>
-            <div class="field">
-              <label>Gift ($10) PayPal Link</label>
-              <div class="row-inline">
-                <input type="text" id="set_gift_paypal_link" placeholder="https://www.paypal.com/ncp/payment/..." />
-                <button type="button" onclick="saveSettingText('gift_paypal_link')">Save</button>
-              </div>
-            </div>
-            <div class="field">
-              <label>Meet Sofia ($80) PayPal Link</label>
-              <div class="row-inline">
-                <input type="text" id="set_meet_paypal_link" placeholder="https://www.paypal.com/ncp/payment/..." />
-                <button type="button" onclick="saveSettingText('meet_paypal_link')">Save</button>
-              </div>
-            </div>
-          </div>
+      <!-- TAB 1: VIP APPROVALS -->
+      <section id="vipTab" class="glass-box">
+        <h2 style="font-size:19px; margin-bottom:12px;">VIP Folders Payments (Videos &amp; Photos / WhatsApp)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Folder</th><th>Name</th><th>Gmail</th><th>Tx ID</th><th>Screenshot</th><th>Status</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="vipTableBody"></tbody>
+          </table>
         </div>
-
-        <!-- ALL 8 FOLDERS SETTINGS GRID (INCLUDING INSIDE BANNER PHOTO FOR ALL 8) -->
-        <div id="allFoldersSettingsGrid" class="grid-2"></div>
       </section>
 
-      <!-- TAB 2: Upload & Delete Media/Products -->
-      <section id="mediaTab" class="card hidden">
-        <h2 style="margin-bottom:14px;">📤 Upload New Product / Video / Photo</h2>
-        <form onsubmit="publishMediaItem(event)" class="grid-2" style="margin-bottom:20px;">
-          <div class="field">
-            <label>Select Folder</label>
-            <select id="medFolder" required>
-              <option value="store">Sofia Jenny Taborda Store</option>
-              <option value="dolls">Sofia Jenny Taborda Sexy Dolls</option>
-              <option value="luckydraw">Sofia Jenny Taborda Lucky Draw</option>
-              <option value="academy">Sofia Jenny Taborda Academy</option>
-              <option value="videos_photos">Videos &amp; Photos (VIP Paid)</option>
-              <option value="whatsapp">WhatsApp (VIP Paid)</option>
-            </select>
+      <!-- TAB 2: STORE / DOLLS / LUCKY DRAW ORDERS -->
+      <section id="ordersTab" class="glass-box hidden">
+        <h2 style="font-size:19px; margin-bottom:12px;">Store, Sexy Dolls &amp; Lucky Draw Orders</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Folder</th><th>Item</th><th>Price</th><th>Customer</th><th>Gmail &amp; WhatsApp</th><th>Address</th><th>Screenshot</th><th>Status</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 3: UPLOAD & DELETE -->
+      <section id="uploadTab" class="glass-box hidden">
+        <h2 style="font-size:19px; margin-bottom:12px;">Upload Video (up to 500MB Drive Link), Photo (up to 100MB) or Product</h2>
+        <form onsubmit="handleAddMedia(event)">
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Target Folder</label>
+              <select id="upFolder">
+                <option value="videos_photos">1. Sofia Jenny Taborda Videos &amp; Photos (VIP)</option>
+                <option value="whatsapp">2. Sofia Jenny Taborda WhatsApp (VIP)</option>
+                <option value="luckydraw">4. Sofia Jenny Taborda Lucky Draw</option>
+                <option value="store">5. Sofia Jenny Taborda Store</option>
+                <option value="dolls">6. Sofia Jenny Taborda Sexy Dolls</option>
+                <option value="academy">8. Sofia Jenny Taborda Academy</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Content Type</label>
+              <select id="upType">
+                <option value="video">Video (Drive Link / Embed)</option>
+                <option value="photo">Photo (Full Uncropped)</option>
+                <option value="product">Store / Dolls / Lucky Draw Product</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Title</label>
+              <input type="text" id="upTitle" required />
+            </div>
+            <div class="field-group">
+              <label>Price ($ USD - for Store / Lucky Draw / Dolls)</label>
+              <input type="text" id="upPrice" placeholder="e.g. 25" />
+            </div>
+            <div class="field-group">
+              <label>Custom PayPal Link (Optional)</label>
+              <input type="text" id="upPayPal" placeholder="https://www.paypal.com/..." />
+            </div>
+            <div class="field-group">
+              <label>Google Drive Link (for Video/Photo) OR Upload Photo File</label>
+              <input type="text" id="upDriveUrl" placeholder="Paste Google Drive share link" />
+              <input type="file" id="upPhotoFile" accept="image/*" style="margin-top:6px;" />
+            </div>
+            <div class="field-group">
+              <label>YouTube Size Thumbnail (16:9 - Upload or Drive Link)</label>
+              <input type="file" id="upThumbFile" accept="image/*" />
+              <input type="text" id="upThumbUrl" placeholder="Or paste Thumbnail link" style="margin-top:6px;" />
+            </div>
           </div>
-          <div class="field">
-            <label>Item Type</label>
-            <select id="medType" required>
-              <option value="product">Product / Item</option>
-              <option value="photo">Photo</option>
-              <option value="video">Video</option>
-            </select>
+          <div class="field-group">
+            <label>Description / Notes</label>
+            <textarea id="upDesc" rows="2"></textarea>
           </div>
-          <div class="field">
-            <label>Title</label>
-            <input type="text" id="medTitle" required />
-          </div>
-          <div class="field">
-            <label>Price ($ USD)</label>
-            <input type="text" id="medPrice" placeholder="e.g. 25" />
-          </div>
-          <div class="field">
-            <label>Custom PayPal Link (for this item)</label>
-            <input type="text" id="medPayPal" placeholder="https://www.paypal.com/ncp/payment/..." />
-          </div>
-          <div class="field">
-            <label>Drive / Video URL (optional)</label>
-            <input type="text" id="medDriveUrl" placeholder="Google Drive preview/embed link" />
-          </div>
-          <div class="field">
-            <label>Thumbnail / Product Photo</label>
-            <input type="file" id="medThumbFile" accept="image/*" />
-          </div>
-          <div class="field">
-            <label>Description (optional)</label>
-            <input type="text" id="medDesc" />
-          </div>
-          <div style="grid-column: 1 / -1;">
-            <button type="submit" style="width:100%; padding:13px;">Publish Item</button>
-          </div>
+          <button type="submit">Publish Item</button>
         </form>
 
-        <h3 style="margin-bottom:10px;">📋 Published Items</h3>
-        <div id="mediaListContainer">Loading...</div>
+        <h3 style="font-size:17px; margin:22px 0 10px;">All Uploaded Items (Delete Anytime)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Folder</th><th>Type</th><th>Title</th><th>Price</th><th>Preview</th><th>Delete</th></tr>
+            </thead>
+            <tbody id="mediaTableBody"></tbody>
+          </table>
+        </div>
       </section>
 
-      <!-- TAB 3: VIP Approvals -->
-      <section id="vipTab" class="card hidden">
-        <h2 style="margin-bottom:14px;">🔑 VIP Payment Approvals</h2>
-        <div id="vipListContainer">Loading...</div>
+      <!-- TAB 4: PHOTOS, LOGO & PAYPAL LINKS -->
+      <section id="photosTab" class="glass-box hidden">
+        <h2 style="font-size:19px; margin-bottom:12px;">Change Logo, Header Photo, All 8 Folder Covers, Inside Banners, Model Photos &amp; PayPal Links</h2>
+        <div id="settingsListBox"></div>
       </section>
 
-      <!-- TAB 4: Orders -->
-      <section id="ordersTab" class="card hidden">
-        <h2 style="margin-bottom:14px;">🛒 Store, Dolls &amp; Lucky Draw Orders</h2>
-        <div id="ordersListContainer">Loading...</div>
-      </section>
-
-      <!-- TAB 5: Free Messages -->
-      <section id="messagesTab" class="card hidden">
-        <h2 style="margin-bottom:14px;">💬 Free Messages (Meet Sofia Jenny Taborda)</h2>
-        <div id="messagesListContainer">Loading...</div>
+      <!-- TAB 5: MESSAGES -->
+      <section id="messagesTab" class="glass-box hidden">
+        <h2 style="font-size:19px; margin-bottom:12px;">Free Messages from Meet Sofia Jenny Taborda</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Gmail</th><th>WhatsApp</th><th>Message</th><th>Time</th><th>Action</th></tr>
+            </thead>
+            <tbody id="messagesTableBody"></tbody>
+          </table>
+        </div>
       </section>
     </div>
   </div>
 
+  <div id="toastBox" class="status-toast hidden"></div>
+
   <script>
     const BACKEND_URL = "https://script.google.com/macros/s/AKfycbw1S3rKmIHA0KUC4hjC9qPc1PykcMsY96_qnKDb94fTlzEHU8aNnniXfTn_yipz112PJA/exec";
-    let ADMIN_PASS = "";
 
-    const FOLDERS_ADMIN_LIST = [
-      { id: "videos_photos", name: "1. Sofia Jenny Taborda Videos & Photos ($40)", cover: "cover_videos_photos", banner: "banner_videos_photos", model: "paypal_model_videos_photos" },
-      { id: "whatsapp",      name: "2. Sofia Jenny Taborda WhatsApp ($60)",        cover: "cover_whatsapp",      banner: "banner_whatsapp",      model: "paypal_model_whatsapp" },
-      { id: "gift",          name: "3. Sofia Jenny Taborda Gift ($10)",            cover: "cover_gift",          banner: "banner_gift",          model: "paypal_model_gift" },
-      { id: "luckydraw",     name: "4. Sofia Jenny Taborda Lucky Draw",            cover: "cover_luckydraw",     banner: "banner_luckydraw",     model: "paypal_model_luckydraw" },
-      { id: "store",         name: "5. Sofia Jenny Taborda Store",                 cover: "cover_store",         banner: "banner_store",         model: "paypal_model_store" },
-      { id: "dolls",         name: "6. Sofia Jenny Taborda Sexy Dolls",            cover: "cover_dolls",         banner: "banner_dolls",         model: "paypal_model_dolls" },
-      { id: "meet",          name: "7. Meet Sofia Jenny Taborda ($80)",            cover: "cover_meet",          banner: "banner_meet",          model: "" },
-      { id: "academy",       name: "8. Sofia Jenny Taborda Academy",               cover: "cover_academy",       banner: "banner_academy",       model: "" }
+    const PHOTO_AND_LINK_FIELDS = [
+      { key: "logo_url", label: "Site Logo (Upload or Link)", isImage: true },
+      { key: "main_header_photo", label: "Main Home Header Photo", isImage: true },
+      { key: "gift_paypal_link", label: "Main $10 Gift & Default PayPal Link", isImage: false },
+      { key: "vip_videos_paypal_link", label: "Folder 1 (Videos & Photos $40) PayPal Link", isImage: false },
+      { key: "vip_whatsapp_paypal_link", label: "Folder 2 (WhatsApp $60) PayPal Link", isImage: false },
+      { key: "meet_paypal_link", label: "Folder 7 (Meet Sofia $80) PayPal Link", isImage: false },
+      { key: "cover_videos_photos", label: "Home Card Photo: Sofia Jenny Taborda Videos & Photos", isImage: true },
+      { key: "cover_whatsapp", label: "Home Card Photo: Sofia Jenny Taborda WhatsApp", isImage: true },
+      { key: "cover_gift", label: "Home Card Photo: Sofia Jenny Taborda Gift ($10)", isImage: true },
+      { key: "cover_luckydraw", label: "Home Card Photo: Sofia Jenny Taborda Lucky Draw", isImage: true },
+      { key: "cover_store", label: "Home Card Photo: Sofia Jenny Taborda Store", isImage: true },
+      { key: "cover_dolls", label: "Home Card Photo: Sofia Jenny Taborda Sexy Dolls", isImage: true },
+      { key: "cover_meet", label: "Home Card Photo: Meet Sofia Jenny Taborda", isImage: true },
+      { key: "cover_academy", label: "Home Card Photo: Sofia Jenny Taborda Academy", isImage: true },
+      { key: "banner_videos_photos", label: "Inside Banner Photo: Videos & Photos", isImage: true },
+      { key: "banner_whatsapp", label: "Inside Banner Photo: WhatsApp", isImage: true },
+      { key: "banner_gift", label: "Inside Banner Photo: Gift ($10)", isImage: true },
+      { key: "banner_luckydraw", label: "Inside Banner Photo: Lucky Draw", isImage: true },
+      { key: "banner_store", label: "Inside Banner Photo: Store", isImage: true },
+      { key: "banner_dolls", label: "Inside Banner Photo: Sexy Dolls", isImage: true },
+      { key: "banner_meet", label: "Inside Banner Photo: Meet Sofia", isImage: true },
+      { key: "banner_academy", label: "Inside Banner Photo: Academy", isImage: true },
+      { key: "paypal_model_videos_photos", label: "PayPal Page Model Photo: Videos & Photos", isImage: true },
+      { key: "paypal_model_whatsapp", label: "PayPal Page Model Photo: WhatsApp", isImage: true },
+      { key: "paypal_model_gift", label: "PayPal Page Model Photo: $10 Gift", isImage: true },
+      { key: "paypal_model_luckydraw", label: "PayPal Page Model Photo: Lucky Draw", isImage: true },
+      { key: "paypal_model_store", label: "PayPal Page Model Photo: Store", isImage: true },
+      { key: "paypal_model_dolls", label: "PayPal Page Model Photo: Sexy Dolls", isImage: true },
+      { key: "paypal_model_meet", label: "PayPal Page Model Photo: Meet Sofia", isImage: true },
+      { key: "paypal_model_academy", label: "Inside Photo: Academy", isImage: true }
     ];
 
-    function renderAllFolderSettingsUI() {
-      const grid = document.getElementById("allFoldersSettingsGrid");
-      grid.innerHTML = "";
+    let ADMIN_PASS = "";
+    let DB_DATA = { settings: {}, media: [], vipPayments: [], orders: [], messages: [] };
 
-      FOLDERS_ADMIN_LIST.forEach(f => {
-        const box = document.createElement("div");
-        box.className = "folder-setting-box";
-        box.innerHTML = `
-          <h3>📁 ${f.name}</h3>
-          <div class="field">
-            <label>Home Card Cover Photo:</label>
-            <div class="row-inline">
-              <input type="file" id="file_${f.cover}" accept="image/*" />
-              <button type="button" onclick="uploadSettingImage('${f.cover}', 'file_${f.cover}')">Save</button>
-            </div>
-          </div>
-          <div class="field">
-            <label>Inside Banner Photo:</label>
-            <div class="row-inline">
-              <input type="file" id="file_${f.banner}" accept="image/*" />
-              <button type="button" onclick="uploadSettingImage('${f.banner}', 'file_${f.banner}')">Save</button>
-            </div>
-          </div>
-          ${f.model ? `
-          <div class="field">
-            <label>PayPal / Checkout Model Photo:</label>
-            <div class="row-inline">
-              <input type="file" id="file_${f.model}" accept="image/*" />
-              <button type="button" onclick="uploadSettingImage('${f.model}', 'file_${f.model}')">Save</button>
-            </div>
-          </div>` : ``}
-        `;
-        grid.appendChild(box);
-      });
+    function toast(msg) {
+      const el = document.getElementById("toastBox");
+      el.textContent = msg;
+      el.classList.remove("hidden");
+      clearTimeout(window._t);
+      window._t = setTimeout(() => el.classList.add("hidden"), 3500);
     }
 
-    async function loginAdmin() {
-      const pass = document.getElementById("adminPassInput").value.trim();
-      if (!pass) return;
-      ADMIN_PASS = pass;
-      const errBox = document.getElementById("loginError");
-      errBox.classList.remove("hidden");
-      errBox.textContent = "Verifying...";
-
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      ADMIN_PASS = document.getElementById("adminPassInput").value.trim();
+      toast("Logging in...");
       try {
-        const res = await postBackend({ action: "getAdminData", password: ADMIN_PASS });
+        const res = await adminPost({ action: "adminLogin" });
         if (res.status === "success") {
-          document.getElementById("loginPanel").classList.add("hidden");
-          document.getElementById("dashboardPanel").classList.remove("hidden");
-          renderAllFolderSettingsUI();
-          populateAdminData(res);
+          DB_DATA = res;
+          document.getElementById("loginBox").classList.add("hidden");
+          document.getElementById("dashboardBox").classList.remove("hidden");
+          renderAllSections();
+          toast("Welcome to Admin Dashboard!");
         } else {
-          errBox.textContent = "Invalid password. Please try again.";
+          toast(res.message || "Invalid Password!");
         }
-      } catch (e) {
-        errBox.textContent = "Connection error. Please check backend URL.";
+      } catch (err) {
+        toast("Connection error. Check internet or backend URL.");
       }
     }
 
     function logoutAdmin() {
       ADMIN_PASS = "";
-      document.getElementById("dashboardPanel").classList.add("hidden");
-      document.getElementById("loginPanel").classList.remove("hidden");
-      document.getElementById("adminPassInput").value = "";
+      location.reload();
     }
 
-    function switchTab(tabId, btn) {
-      ["settingsTab", "mediaTab", "vipTab", "ordersTab", "messagesTab"].forEach(id => {
-        document.getElementById(id).classList.add("hidden");
-      });
-      document.getElementById(tabId).classList.remove("hidden");
-      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-      if (btn) btn.classList.add("active");
-    }
-
-    function populateAdminData(data) {
-      const s = data.settings || {};
-      ["vip_videos_paypal_link", "vip_whatsapp_paypal_link", "gift_paypal_link", "meet_paypal_link"].forEach(key => {
-        const el = document.getElementById("set_" + key);
-        if (el && s[key]) el.value = s[key];
-      });
-
-      renderMediaList(data.media || []);
-      renderVipList(data.vip || []);
-      renderOrdersList(data.orders || []);
-      renderMessagesList(data.messages || []);
-    }
-
-    async function reloadAdminData() {
-      const res = await postBackend({ action: "getAdminData", password: ADMIN_PASS });
-      if (res.status === "success") populateAdminData(res);
-    }
-
-    async function uploadSettingImage(settingKey, inputId) {
-      const fileInput = document.getElementById(inputId);
-      const file = fileInput && fileInput.files[0];
-      if (!file) {
-        showGlobalStatus("Please select an image first.");
-        return;
-      }
-      showGlobalStatus("Uploading " + settingKey + "...");
-      const base64 = await fileToBase64(file);
-      const res = await postBackend({
-        action: "saveSettingImage",
-        password: ADMIN_PASS,
-        key: settingKey,
-        image: base64
-      });
+    async function refreshDashboard() {
+      toast("Refreshing...");
+      const res = await adminPost({ action: "adminLogin" });
       if (res.status === "success") {
-        showGlobalStatus("✅ Saved successfully: " + settingKey);
-        fileInput.value = "";
-      } else {
-        showGlobalStatus("❌ Error saving image.");
+        DB_DATA = res;
+        renderAllSections();
+        toast("Updated!");
       }
     }
 
-    async function saveSettingText(settingKey) {
-      const val = document.getElementById("set_" + settingKey).value.trim();
-      showGlobalStatus("Saving " + settingKey + "...");
-      const res = await postBackend({
-        action: "saveSetting",
-        password: ADMIN_PASS,
-        key: settingKey,
-        value: val
+    function switchTab(tabId) {
+      ["vipTab", "ordersTab", "uploadTab", "photosTab", "messagesTab"].forEach(id => {
+        document.getElementById(id).classList.toggle("hidden", id !== tabId);
       });
+    }
+
+    function renderAllSections() {
+      document.getElementById("statVip").textContent = (DB_DATA.vipPayments || []).length;
+      document.getElementById("statOrders").textContent = (DB_DATA.orders || []).length;
+      document.getElementById("statMedia").textContent = (DB_DATA.media || []).length;
+      document.getElementById("statMsg").textContent = (DB_DATA.messages || []).length;
+
+      renderVipTable();
+      renderOrdersTable();
+      renderMediaTable();
+      renderSettingsBox();
+      renderMessagesTable();
+    }
+
+    function renderVipTable() {
+      const tbody = document.getElementById("vipTableBody");
+      tbody.innerHTML = "";
+      (DB_DATA.vipPayments || []).forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(row.FolderID)}</td>
+          <td>${esc(row.Name)}</td>
+          <td>${esc(row.Gmail)}</td>
+          <td>${esc(row.TransactionID)}</td>
+          <td>${row.ScreenshotURL ? `<a href="${esc(row.ScreenshotURL)}" target="_blank" style="color:#7ee3ff;">View Proof</a>` : `-`}</td>
+          <td>${esc(row.Status)}</td>
+          <td style="display:flex; gap:6px; flex-wrap:wrap;">
+            ${row.Status !== "Approved" ? `<button type="button" class="btn-green" onclick="approveVip('${esc(row.ID)}')">Approve</button>` : ``}
+            <button type="button" class="btn-red" onclick="deleteRow('VIP_Payments', '${esc(row.ID)}')">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderOrdersTable() {
+      const tbody = document.getElementById("ordersTableBody");
+      tbody.innerHTML = "";
+      (DB_DATA.orders || []).forEach(row => {
+        const addr = `${row.Address || ""}, ${row.City || ""}, ${row.Country || ""}`;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(row.FolderID)}</td>
+          <td>${esc(row.ProductTitle)}</td>
+          <td>$${esc(row.Price)}</td>
+          <td>${esc(row.Name)}</td>
+          <td>${esc(row.Gmail)}<br>${esc(row.WhatsApp)}</td>
+          <td>${esc(addr)}</td>
+          <td>${row.ScreenshotURL ? `<a href="${esc(row.ScreenshotURL)}" target="_blank" style="color:#7ee3ff;">Proof</a>` : `-`}</td>
+          <td>${esc(row.Status)}</td>
+          <td style="display:flex; gap:6px; flex-wrap:wrap;">
+            ${row.Status !== "Approved" ? `<button type="button" class="btn-green" onclick="approveOrder('${esc(row.ID)}')">Approve &amp; Send PDF</button>` : ``}
+            <button type="button" class="btn-red" onclick="deleteRow('Orders', '${esc(row.ID)}')">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderMediaTable() {
+      const tbody = document.getElementById("mediaTableBody");
+      tbody.innerHTML = "";
+      (DB_DATA.media || []).forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(item.FolderID)}</td>
+          <td>${esc(item.Type)}</td>
+          <td>${esc(item.Title)}</td>
+          <td>${item.Price ? `$${esc(item.Price)}` : `-`}</td>
+          <td>${item.ThumbnailURL ? `<img class="preview-thumb" src="${esc(item.ThumbnailURL)}" alt="Thumb" />` : `-`}</td>
+          <td><button type="button" class="btn-red" onclick="deleteRow('Media', '${esc(item.ID)}')">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderSettingsBox() {
+      const box = document.getElementById("settingsListBox");
+      box.innerHTML = "";
+      PHOTO_AND_LINK_FIELDS.forEach(cfg => {
+        const currentVal = (DB_DATA.settings && DB_DATA.settings[cfg.key]) || "";
+        const row = document.createElement("div");
+        row.className = "photo-setting-row";
+        row.innerHTML = `
+          <div>
+            <div style="font-size:14px;">${esc(cfg.label)}</div>
+            ${cfg.isImage && currentVal ? `<img class="preview-thumb" src="${esc(currentVal)}" style="margin-top:6px;" />` : ``}
+          </div>
+          <div>
+            <input type="text" id="val_${cfg.key}" value="${esc(currentVal)}" placeholder="Paste URL or Drive Link" style="width:100%; padding:9px; border-radius:8px; border:1px solid #7cd0ff; background:#02102c; color:#fff;" />
+            ${cfg.isImage ? `<input type="file" id="file_${cfg.key}" accept="image/*" style="margin-top:6px; font-size:12px;" />` : ``}
+          </div>
+          <div>
+            <button type="button" onclick="saveSettingField('${cfg.key}', ${cfg.isImage})">Save</button>
+          </div>
+        `;
+        box.appendChild(row);
+      });
+    }
+
+    function renderMessagesTable() {
+      const tbody = document.getElementById("messagesTableBody");
+      tbody.innerHTML = "";
+      (DB_DATA.messages || []).forEach(m => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(m.Name)}</td>
+          <td>${esc(m.Gmail)}</td>
+          <td>${esc(m.WhatsApp)}</td>
+          <td>${esc(m.Message)}</td>
+          <td>${esc(m.CreatedAt)}</td>
+          <td><button type="button" class="btn-red" onclick="deleteRow('Messages', '${esc(m.ID)}')">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function saveSettingField(key, isImage) {
+      let value = document.getElementById("val_" + key).value.trim();
+      const fileInput = isImage ? document.getElementById("file_" + key) : null;
+      if (fileInput && fileInput.files && fileInput.files[0]) {
+        value = await fileToBase64(fileInput.files[0]);
+      }
+      toast("Saving...");
+      const res = await adminPost({ action: "updateSetting", key: key, value: value, isImage: isImage });
       if (res.status === "success") {
-        showGlobalStatus("✅ Saved: " + settingKey);
+        toast("Saved!");
+        await refreshDashboard();
       } else {
-        showGlobalStatus("❌ Error saving setting.");
+        toast("Save failed.");
       }
     }
 
-    async function publishMediaItem(e) {
+    async function handleAddMedia(e) {
       e.preventDefault();
-      showGlobalStatus("Publishing item...");
-      const file = document.getElementById("medThumbFile").files[0];
-      const base64 = file ? await fileToBase64(file) : "";
+      toast("Uploading item...");
+
+      let driveUrl = document.getElementById("upDriveUrl").value.trim();
+      const photoFile = document.getElementById("upPhotoFile").files[0];
+      if (photoFile) {
+        driveUrl = await fileToBase64(photoFile);
+      }
+
+      let thumbUrl = document.getElementById("upThumbUrl").value.trim();
+      const thumbFile = document.getElementById("upThumbFile").files[0];
+      if (thumbFile) {
+        thumbUrl = await fileToBase64(thumbFile);
+      }
 
       const payload = {
         action: "addMedia",
-        password: ADMIN_PASS,
-        folderId: document.getElementById("medFolder").value,
-        type: document.getElementById("medType").value,
-        title: document.getElementById("medTitle").value.trim(),
-        price: document.getElementById("medPrice").value.trim(),
-        paypalLink: document.getElementById("medPayPal").value.trim(),
-        driveUrl: document.getElementById("medDriveUrl").value.trim(),
-        description: document.getElementById("medDesc").value.trim(),
-        thumbnail: base64
+        folderId: document.getElementById("upFolder").value,
+        type: document.getElementById("upType").value,
+        title: document.getElementById("upTitle").value.trim(),
+        price: document.getElementById("upPrice").value.trim(),
+        paypalLink: document.getElementById("upPayPal").value.trim(),
+        driveUrl: driveUrl,
+        thumbnailUrl: thumbUrl,
+        description: document.getElementById("upDesc").value.trim()
       };
 
-      const res = await postBackend(payload);
+      const res = await adminPost(payload);
       if (res.status === "success") {
-        showGlobalStatus("✅ Item published!");
+        toast("Published successfully!");
         e.target.reset();
-        reloadAdminData();
+        await refreshDashboard();
       } else {
-        showGlobalStatus("❌ Error publishing item.");
+        toast("Upload error.");
       }
     }
 
-    function renderMediaList(items) {
-      const box = document.getElementById("mediaListContainer");
-      if (!items.length) { box.innerHTML = "<p>No items uploaded yet.</p>"; return; }
-      box.innerHTML = items.map((m, idx) => `
-        <div class="item-row">
-          <div>
-            <strong>${escapeHtml(m.Title)}</strong> (${escapeHtml(m.FolderID)}) — $${escapeHtml(m.Price || "0")} USD
-          </div>
-          <button type="button" class="danger" onclick="deleteMediaItem('${escapeHtml(m.ID || idx)}')">Delete</button>
-        </div>
-      `).join("");
-    }
-
-    async function deleteMediaItem(id) {
-      showGlobalStatus("Deleting item...");
-      await postBackend({ action: "deleteMedia", password: ADMIN_PASS, id: id });
-      showGlobalStatus("✅ Deleted.");
-      reloadAdminData();
-    }
-
-    function renderVipList(list) {
-      const box = document.getElementById("vipListContainer");
-      if (!list.length) { box.innerHTML = "<p>No VIP requests yet.</p>"; return; }
-      box.innerHTML = list.map(v => `
-        <div class="item-row">
-          <div>
-            <strong>${escapeHtml(v.Name)}</strong> | ${escapeHtml(v.Gmail)} | Folder: ${escapeHtml(v.FolderID)} | Tx: ${escapeHtml(v.TxID)} | Status: ${escapeHtml(v.Status)}
-          </div>
-          <button type="button" onclick="approveVip('${escapeHtml(v.Gmail)}', '${escapeHtml(v.FolderID)}')">Approve</button>
-        </div>
-      `).join("");
-    }
-
-    async function approveVip(gmail, folderId) {
-      showGlobalStatus("Approving VIP...");
-      await postBackend({ action: "approveVip", password: ADMIN_PASS, gmail, folderId });
-      showGlobalStatus("✅ VIP Approved.");
-      reloadAdminData();
-    }
-
-    function renderOrdersList(list) {
-      const box = document.getElementById("ordersListContainer");
-      if (!list.length) { box.innerHTML = "<p>No orders yet.</p>"; return; }
-      box.innerHTML = list.map((o, idx) => `
-        <div class="item-row">
-          <div>
-            <strong>${escapeHtml(o.ProductTitle)}</strong> ($${escapeHtml(o.Price)}) — ${escapeHtml(o.Name)} | ${escapeHtml(o.Gmail)} | ${escapeHtml(o.WhatsApp)} | ${escapeHtml(o.City)}, ${escapeHtml(o.Country)} | Status: ${escapeHtml(o.Status)}
-          </div>
-          <button type="button" onclick="approveOrder('${escapeHtml(o.ID || idx)}')">Approve Order</button>
-        </div>
-      `).join("");
+    async function approveVip(id) {
+      toast("Approving VIP Gmail...");
+      const res = await adminPost({ action: "approveVip", id: id });
+      if (res.status === "success") {
+        toast("VIP Approved & Email Sent!");
+        await refreshDashboard();
+      }
     }
 
     async function approveOrder(id) {
-      showGlobalStatus("Approving order...");
-      await postBackend({ action: "approveOrder", password: ADMIN_PASS, id });
-      showGlobalStatus("✅ Order Approved.");
-      reloadAdminData();
+      toast("Approving & sending PDF receipt...");
+      const res = await adminPost({ action: "approveOrder", id: id });
+      if (res.status === "success") {
+        toast("Approved & PDF Receipt Sent to Gmail!");
+        await refreshDashboard();
+      }
     }
 
-    function renderMessagesList(list) {
-      const box = document.getElementById("messagesListContainer");
-      if (!list.length) { box.innerHTML = "<p>No messages yet.</p>"; return; }
-      box.innerHTML = list.map(m => `
-        <div class="item-row">
-          <div>
-            <strong>${escapeHtml(m.Name)}</strong> (${escapeHtml(m.Gmail)} | ${escapeHtml(m.WhatsApp)}):<br/>
-            ${escapeHtml(m.Message)}
-          </div>
-        </div>
-      `).join("");
+    async function deleteRow(sheetName, id) {
+      toast("Deleting...");
+      const res = await adminPost({ action: "deleteItem", sheetName: sheetName, id: id });
+      if (res.status === "success") {
+        toast("Deleted!");
+        await refreshDashboard();
+      }
     }
 
-    async function postBackend(payload) {
+    async function adminPost(obj) {
+      obj.password = ADMIN_PASS;
       const res = await fetch(BACKEND_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(obj)
       });
       return await res.json();
     }
@@ -590,14 +676,8 @@
       });
     }
 
-    function showGlobalStatus(msg) {
-      const el = document.getElementById("globalStatus");
-      el.classList.remove("hidden");
-      el.textContent = msg;
-    }
-
-    function escapeHtml(str) {
-      return String(str || "").replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+    function esc(s) {
+      return String(s || "").replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
     }
   </script>
 </body>
