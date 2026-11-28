@@ -54,16 +54,10 @@
     .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 16px; }
 
     .top-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 20px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(14px);
-      border: 1.5px solid var(--glass-border);
-      border-radius: 20px;
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 14px; padding: 14px 20px;
+      background: var(--glass-bg); backdrop-filter: blur(14px);
+      border: 1.5px solid var(--glass-border); border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
     }
 
@@ -169,7 +163,7 @@
 
     .folder-card:hover { transform: translateY(-4px); border-color: #ffffff; box-shadow: 0 12px 30px rgba(0, 175, 255, 0.55); }
 
-    /* Full photo support — any size, no cropping */
+    /* Full uncropped photo support — accepts any size */
     .folder-img-wrap {
       width: 100%; background: rgba(1, 16, 48, 0.85);
       display: flex; align-items: center; justify-content: center;
@@ -207,7 +201,6 @@
 
     .mini-card:hover { transform: translateY(-3px); border-color: #ffffff; box-shadow: 0 8px 22px rgba(0, 195, 255, 0.5); }
 
-    /* Full photo support — any size, no cropping */
     .mini-thumb {
       width: 100%; border-radius: 10px; overflow: hidden;
       background: #031130; display: flex; align-items: center; justify-content: center;
@@ -233,18 +226,58 @@
     .banner-box img { width: 100%; height: auto; object-fit: contain; display: block; margin: 0 auto; }
 
     .paypal-split {
-      display: grid; grid-template-columns: minmax(240px, 380px) 1fr;
+      display: grid; grid-template-columns: minmax(260px, 440px) 1fr;
       gap: 22px; align-items: start;
     }
 
     .model-photo-box {
-      background: rgba(2, 16, 46, 0.8); border: 2px solid rgba(135, 218, 255, 0.65);
+      background: rgba(2, 16, 46, 0.85); border: 2px solid rgba(135, 218, 255, 0.65);
       border-radius: 16px; padding: 10px; text-align: center;
     }
 
-    .model-photo-box img {
+    .model-photo-box img.main-gallery-img {
       width: 100%; height: auto; object-fit: contain;
       border-radius: 12px; display: block; margin: 0 auto;
+    }
+
+    .gallery-nav-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 10px; gap: 8px;
+    }
+
+    .gallery-arrow-btn {
+      padding: 6px 14px; font-size: 16px; font-weight: 900; border-radius: 8px;
+    }
+
+    .gallery-thumbs-strip {
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+      margin-top: 10px;
+    }
+
+    .gallery-thumb-item {
+      width: 70px; height: auto; object-fit: contain;
+      border-radius: 8px; border: 2px solid rgba(120, 205, 255, 0.45);
+      cursor: pointer; background: #010b22; transition: border-color 0.15s, transform 0.15s;
+    }
+
+    .gallery-thumb-item:hover, .gallery-thumb-item.active-thumb {
+      border-color: #ffffff; transform: scale(1.06);
+      box-shadow: 0 0 12px rgba(0, 195, 255, 0.85);
+    }
+
+    .option-pills-wrap {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px;
+    }
+
+    .option-pill-btn {
+      padding: 7px 14px; font-size: 13px; border-radius: 999px;
+      background: rgba(2, 14, 42, 0.92); border: 1.5px solid rgba(120, 205, 255, 0.6);
+      box-shadow: none;
+    }
+
+    .option-pill-btn.active-pill {
+      background: linear-gradient(135deg, #0077ff, #00c3ff);
+      border: 2px solid #ffffff; box-shadow: 0 0 14px rgba(0, 195, 255, 0.85);
     }
 
     .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
@@ -267,8 +300,17 @@
     }
 
     .media-item-card:hover { transform: translateY(-3px); border-color: #ffffff; }
-    .media-item-card img.full-photo { width: 100%; height: auto; object-fit: contain; border-radius: 10px; background: #010b22; display: block; }
-    .media-item-card img.yt-thumb { width: 100%; height: auto; object-fit: contain; border-radius: 10px; background: #010b22; display: block; }
+    .media-item-card img.full-photo,
+    .media-item-card img.yt-thumb {
+      width: 100%; height: auto; object-fit: contain;
+      border-radius: 10px; background: #010b22; display: block;
+    }
+
+    .photo-count-badge {
+      display: inline-block; font-size: 11.5px; padding: 3px 9px;
+      border-radius: 999px; background: rgba(0, 145, 255, 0.3);
+      border: 1px solid rgba(145, 225, 255, 0.55); color: #d8f4ff; margin-top: 4px;
+    }
 
     .video-frame-wrap { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000000; border: 1.5px solid rgba(120, 205, 255, 0.6); }
     .video-frame-wrap iframe { width: 100%; height: 100%; border: 0; }
@@ -650,9 +692,41 @@
     let PUBLIC_MEDIA = [];
     let CURRENT_LANG = "en";
     let ACTIVE_FOLDER = null;
+    let ACTIVE_GALLERY_IMAGES = [];
+    let ACTIVE_GALLERY_INDEX = 0;
 
     function t(key) {
       return (I18N[CURRENT_LANG] && I18N[CURRENT_LANG][key]) || I18N.en[key] || key;
+    }
+
+    function getProductMeta(item) {
+      const meta = { images: [], colors: [], sizes: [] };
+      if (!item) return meta;
+      try {
+        const raw = SITE_SETTINGS["prod_meta_" + item.ID];
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed.images)) meta.images = parsed.images.filter(Boolean);
+          if (Array.isArray(parsed.colors)) meta.colors = parsed.colors.filter(Boolean);
+          if (Array.isArray(parsed.sizes)) meta.sizes = parsed.sizes.filter(Boolean);
+        }
+      } catch (e) {}
+
+      // Combine Thumbnail + Gallery + DriveURL (if image) without duplicates
+      const combined = [];
+      const addUnique = (url) => {
+        if (url && String(url).trim() && !combined.includes(url)) combined.push(url);
+      };
+      if (item.ThumbnailURL) addUnique(item.ThumbnailURL);
+      meta.images.forEach(addUnique);
+      if (item.Type !== "video" && item.DriveURL) addUnique(item.DriveURL);
+      meta.images = combined;
+      return meta;
+    }
+
+    function getAutoThumbnail(item) {
+      const meta = getProductMeta(item);
+      return meta.images[0] || "";
     }
 
     function changeLanguage(lang) {
@@ -742,11 +816,12 @@
         const card = document.createElement("div");
         card.className = "mini-card";
         const priceLabel = item.Price ? `$${escapeHtml(item.Price)} USD` : "";
+        const thumbUrl = getAutoThumbnail(item);
 
         card.onclick = () => openFolderAndProduct(item.FolderID, item.Title);
         card.innerHTML = `
           <div class="mini-thumb">
-            ${item.ThumbnailURL ? `<img src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : `<span>✨</span>`}
+            ${thumbUrl ? `<img src="${escapeAttr(thumbUrl)}" alt="${escapeAttr(item.Title)}" />` : `<span>✨</span>`}
           </div>
           <div class="mini-title">${escapeHtml(item.Title)}</div>
           ${priceLabel ? `<div class="mini-price">${priceLabel}</div>` : ``}
@@ -854,7 +929,7 @@
 
         <div class="paypal-split">
           <div class="model-photo-box">
-            ${modelPhoto ? `<img src="${escapeAttr(modelPhoto)}" alt="Model Photo" />` : `<div style="padding:60px 16px;">Model Photo</div>`}
+            ${modelPhoto ? `<img class="main-gallery-img" src="${escapeAttr(modelPhoto)}" alt="Model Photo" />` : `<div style="padding:60px 16px;">Model Photo</div>`}
           </div>
 
           <div>
@@ -973,7 +1048,7 @@
         <h2 style="font-size:24px; margin-bottom:14px;">${escapeHtml(folder.defaultTitle)}</h2>
         <div class="paypal-split">
           <div class="model-photo-box">
-            ${modelPhoto ? `<img src="${escapeAttr(modelPhoto)}" alt="Gift Model" />` : `<div style="padding:50px;">$10 Gift</div>`}
+            ${modelPhoto ? `<img class="main-gallery-img" src="${escapeAttr(modelPhoto)}" alt="Gift Model" />` : `<div style="padding:50px;">$10 Gift</div>`}
           </div>
           <div>
             <a href="${escapeAttr(paypalUrl)}" target="_blank" rel="noopener" style="display:block; text-decoration:none;">
@@ -1001,14 +1076,18 @@
         html += `<div class="media-gallery-grid">`;
         items.forEach((item, idx) => {
           const itemPrice = escapeHtml(item.Price || "10");
+          const meta = getProductMeta(item);
+          const thumbUrl = meta.images[0] || "";
+          const photoCount = meta.images.length;
 
           html += `
             <div class="media-item-card" onclick="openOrderCheckout(${idx}, '${folder.id}')">
               <div>
-                ${item.ThumbnailURL ? `<img class="yt-thumb" src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : ``}
+                ${thumbUrl ? `<img class="yt-thumb" src="${escapeAttr(thumbUrl)}" alt="${escapeAttr(item.Title)}" />` : ``}
                 <div class="mini-title" style="margin-top:8px;">${escapeHtml(item.Title)}</div>
                 <div class="mini-price" style="margin-top:4px;">$${itemPrice} USD</div>
-                ${item.Description ? `<p style="font-size:13px; color:#d8efff; margin-top:4px;">${escapeHtml(item.Description)}</p>` : ``}
+                ${photoCount > 1 ? `<span class="photo-count-badge">📷 ${photoCount} Photos / Angles</span>` : ``}
+                ${item.Description ? `<p style="font-size:13px; color:#d8efff; margin-top:6px;">${escapeHtml(item.Description)}</p>` : ``}
               </div>
               <div style="margin-top:8px;">
                 <button type="button" onclick="event.stopPropagation(); openOrderCheckout(${idx}, '${folder.id}')" style="width:100%;">
@@ -1025,25 +1104,98 @@
       document.getElementById("innerContent").innerHTML = html;
     }
 
+    function selectGalleryImage(idx) {
+      if (!ACTIVE_GALLERY_IMAGES.length) return;
+      ACTIVE_GALLERY_INDEX = (idx + ACTIVE_GALLERY_IMAGES.length) % ACTIVE_GALLERY_IMAGES.length;
+      const mainImg = document.getElementById("checkoutMainImg");
+      if (mainImg) mainImg.src = ACTIVE_GALLERY_IMAGES[ACTIVE_GALLERY_INDEX];
+      const counter = document.getElementById("galleryCounter");
+      if (counter) counter.textContent = `${ACTIVE_GALLERY_INDEX + 1} / ${ACTIVE_GALLERY_IMAGES.length}`;
+
+      document.querySelectorAll(".gallery-thumb-item").forEach((el, i) => {
+        el.classList.toggle("active-thumb", i === ACTIVE_GALLERY_INDEX);
+      });
+    }
+
+    function pickOptionPill(inputId, value, btnEl, groupClass) {
+      const input = document.getElementById(inputId);
+      if (input) input.value = value;
+      document.querySelectorAll("." + groupClass).forEach(b => b.classList.remove("active-pill"));
+      if (btnEl) btnEl.classList.add("active-pill");
+    }
+
     function openOrderCheckout(index, folderId) {
       const folder = FOLDERS_CONFIG.find(f => f.id === folderId);
       const items = PUBLIC_MEDIA.filter(m => m.FolderID === folderId);
       const item = items[index];
       if (!item) return;
 
-      const productPhoto = item.ThumbnailURL || SITE_SETTINGS[folder.modelKey] || "";
+      const meta = getProductMeta(item);
+      ACTIVE_GALLERY_IMAGES = meta.images.length ? meta.images : (SITE_SETTINGS[folder.modelKey] ? [SITE_SETTINGS[folder.modelKey]] : []);
+      ACTIVE_GALLERY_INDEX = 0;
+
       const paypalUrl = getPayPalLink(folder, item.PayPalLink);
       const itemPrice = escapeHtml(item.Price || "10");
+      const showVariantFields = (folderId === "store" || folderId === "dolls" || meta.colors.length > 0 || meta.sizes.length > 0);
+
+      let galleryHtml = "";
+      if (ACTIVE_GALLERY_IMAGES.length) {
+        galleryHtml = `<img id="checkoutMainImg" class="main-gallery-img" src="${escapeAttr(ACTIVE_GALLERY_IMAGES[0])}" alt="Product Photo" />`;
+        if (ACTIVE_GALLERY_IMAGES.length > 1) {
+          galleryHtml += `
+            <div class="gallery-nav-row">
+              <button type="button" class="gallery-arrow-btn" onclick="selectGalleryImage(ACTIVE_GALLERY_INDEX - 1)">‹</button>
+              <span id="galleryCounter" style="font-size:13px; color:#bfeaff;">1 / ${ACTIVE_GALLERY_IMAGES.length}</span>
+              <button type="button" class="gallery-arrow-btn" onclick="selectGalleryImage(ACTIVE_GALLERY_INDEX + 1)">›</button>
+            </div>
+            <div class="gallery-thumbs-strip">
+              ${ACTIVE_GALLERY_IMAGES.map((imgUrl, i) => `
+                <img class="gallery-thumb-item ${i === 0 ? "active-thumb" : ""}" src="${escapeAttr(imgUrl)}" onclick="selectGalleryImage(${i})" alt="Angle ${i + 1}" />
+              `).join("")}
+            </div>
+          `;
+        }
+      }
+
+      let colorPillsHtml = "";
+      if (meta.colors.length) {
+        colorPillsHtml = `<div class="option-pills-wrap">
+          ${meta.colors.map(c => `<button type="button" class="option-pill-btn color-pill" onclick="pickOptionPill('ordColor', '${escapeAttr(c)}', this, 'color-pill')">${escapeHtml(c)}</button>`).join("")}
+        </div>`;
+      }
+
+      let sizePillsHtml = "";
+      if (meta.sizes.length) {
+        sizePillsHtml = `<div class="option-pills-wrap">
+          ${meta.sizes.map(s => `<button type="button" class="option-pill-btn size-pill" onclick="pickOptionPill('ordSize', '${escapeAttr(s)}', this, 'size-pill')">${escapeHtml(s)}</button>`).join("")}
+        </div>`;
+      }
 
       document.getElementById("checkoutArea").innerHTML = `
         <div class="panel-box" style="background:rgba(1,16,46,0.92);">
           <h3 style="font-size:20px; margin-bottom:14px;">${escapeHtml(item.Title)} — $${itemPrice} USD</h3>
+          ${item.Description ? `<p style="font-size:13.5px; color:#d8efff; margin-bottom:14px;">${escapeHtml(item.Description)}</p>` : ``}
+
           <div class="paypal-split">
             <div class="model-photo-box">
-              ${productPhoto ? `<img src="${escapeAttr(productPhoto)}" alt="Product Photo" />` : ``}
+              ${galleryHtml || `<div style="padding:40px;">Product Photo</div>`}
             </div>
+
             <div>
               <form onsubmit="submitOrderAndPay(event, '${folder.id}', '${escapeAttr(item.Title)}', '${itemPrice}', '${escapeAttr(paypalUrl)}')">
+                ${showVariantFields ? `
+                  <div class="field-group">
+                    <label>Select Color (Tap or Write Custom Color)</label>
+                    ${colorPillsHtml}
+                    <input type="text" id="ordColor" placeholder="Tap a color above or type your custom color..." />
+                  </div>
+                  <div class="field-group">
+                    <label>Select Size (Tap or Write Custom Size)</label>
+                    ${sizePillsHtml}
+                    <input type="text" id="ordSize" placeholder="Tap a size above or type your custom size (e.g. S, M, L, XL)..." />
+                  </div>
+                ` : ``}
+
                 <div class="form-grid">
                   <div class="field-group">
                     <label>Full Name *</label>
@@ -1090,10 +1242,22 @@
         btn.textContent = "Saving Order & Opening PayPal...";
       }
 
+      const colorEl = document.getElementById("ordColor");
+      const sizeEl = document.getElementById("ordSize");
+      const selectedColor = colorEl ? colorEl.value.trim() : "";
+      const selectedSize = sizeEl ? sizeEl.value.trim() : "";
+
+      const variantParts = [];
+      if (selectedColor) variantParts.push("Color: " + selectedColor);
+      if (selectedSize) variantParts.push("Size: " + selectedSize);
+      const finalProductTitle = variantParts.length
+        ? `${productTitle} [${variantParts.join(" | ")}]`
+        : productTitle;
+
       const payload = {
         action: "submitOrder",
         folderId: folderId,
-        productTitle: productTitle,
+        productTitle: finalProductTitle,
         price: price,
         name: document.getElementById("ordName").value.trim(),
         gmail: document.getElementById("ordGmail").value.trim(),
@@ -1112,7 +1276,6 @@
       try {
         await postToBackend(payload);
       } catch (err) {
-        // Fallback keepalive send
         try {
           fetch(BACKEND_URL, {
             method: "POST",
@@ -1125,6 +1288,7 @@
       }
 
       e.target.reset();
+      document.querySelectorAll(".option-pill-btn").forEach(b => b.classList.remove("active-pill"));
       if (btn) {
         btn.disabled = false;
         btn.textContent = `💳 Buy Now — $${price} USD (PayPal)`;
@@ -1141,7 +1305,7 @@
 
         <div class="paypal-split">
           <div class="model-photo-box">
-            ${meetPhoto ? `<img src="${escapeAttr(meetPhoto)}" alt="Meet Sofia Jenny Taborda" />` : `<div style="padding:60px 16px;">Meet Sofia Jenny Taborda</div>`}
+            ${meetPhoto ? `<img class="main-gallery-img" src="${escapeAttr(meetPhoto)}" alt="Meet Sofia Jenny Taborda" />` : `<div style="padding:60px 16px;">Meet Sofia Jenny Taborda</div>`}
           </div>
 
           <div>
@@ -1212,9 +1376,10 @@
       } else {
         html += `<div class="media-gallery-grid">`;
         items.forEach(item => {
+          const thumbUrl = getAutoThumbnail(item);
           html += `
             <div class="media-item-card">
-              ${item.ThumbnailURL ? `<img class="yt-thumb" src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : ``}
+              ${thumbUrl ? `<img class="yt-thumb" src="${escapeAttr(thumbUrl)}" alt="${escapeAttr(item.Title)}" />` : ``}
               <div class="mini-title">${escapeHtml(item.Title)}</div>
               ${item.Description ? `<p style="font-size:13px; color:#d8efff;">${escapeHtml(item.Description)}</p>` : ``}
               ${item.DriveURL ? `<div class="video-frame-wrap"><iframe src="${escapeAttr(item.DriveURL)}" allow="autoplay; fullscreen" allowfullscreen></iframe></div>` : ``}
