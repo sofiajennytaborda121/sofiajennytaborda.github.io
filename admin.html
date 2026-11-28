@@ -47,6 +47,11 @@
       box-shadow: 0 0 22px rgba(0, 200, 255, 0.75);
     }
 
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .btn-green {
       background: linear-gradient(135deg, #009e49 0%, #00d665 100%);
       border-color: #b7ffd8;
@@ -180,11 +185,30 @@
     }
 
     .preview-thumb {
-      max-height: 55px;
-      max-width: 95px;
+      max-height: 70px;
+      max-width: 105px;
+      width: auto;
+      height: auto;
       object-fit: contain;
       border-radius: 6px;
       background: #010b22;
+      display: block;
+    }
+
+    .multi-preview-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .multi-preview-row img {
+      height: 68px;
+      width: auto;
+      border-radius: 8px;
+      border: 1.5px solid #7ee3ff;
+      background: #010b22;
+      object-fit: contain;
     }
 
     .status-toast {
@@ -276,7 +300,7 @@
           <table>
             <thead>
               <tr>
-                <th>Folder</th><th>Item</th><th>Price</th><th>Customer</th><th>Gmail &amp; WhatsApp</th><th>Address</th><th>Screenshot</th><th>Status</th><th>Action</th>
+                <th>Folder</th><th>Item (Color &amp; Size)</th><th>Price</th><th>Customer</th><th>Gmail &amp; WhatsApp</th><th>Address</th><th>Screenshot</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
             <tbody id="ordersTableBody"></tbody>
@@ -286,7 +310,7 @@
 
       <!-- TAB 3: UPLOAD & DELETE -->
       <section id="uploadTab" class="glass-box hidden">
-        <h2 style="font-size:19px; margin-bottom:12px;">Upload Video (up to 500MB Drive Link), Photo (up to 100MB) or Product</h2>
+        <h2 style="font-size:19px; margin-bottom:12px;">Upload Video, Photo or E-Commerce Product (Unlimited Photos, Colors &amp; Sizes)</h2>
         <form onsubmit="handleAddMedia(event)">
           <div class="form-grid">
             <div class="field-group">
@@ -295,7 +319,7 @@
                 <option value="videos_photos">1. Sofia Jenny Taborda Videos &amp; Photos (VIP)</option>
                 <option value="whatsapp">2. Sofia Jenny Taborda WhatsApp (VIP)</option>
                 <option value="luckydraw">4. Sofia Jenny Taborda Lucky Draw</option>
-                <option value="store">5. Sofia Jenny Taborda Store</option>
+                <option value="store" selected>5. Sofia Jenny Taborda Store</option>
                 <option value="dolls">6. Sofia Jenny Taborda Sexy Dolls</option>
                 <option value="academy">8. Sofia Jenny Taborda Academy</option>
               </select>
@@ -303,14 +327,14 @@
             <div class="field-group">
               <label>Content Type</label>
               <select id="upType">
-                <option value="video">Video (Drive Link / Embed)</option>
-                <option value="photo">Photo (Full Uncropped)</option>
                 <option value="product">Store / Dolls / Lucky Draw Product</option>
+                <option value="photo">Photo (Full Uncropped)</option>
+                <option value="video">Video (Drive Link / Embed)</option>
               </select>
             </div>
             <div class="field-group">
-              <label>Title</label>
-              <input type="text" id="upTitle" required />
+              <label>Title *</label>
+              <input type="text" id="upTitle" placeholder="Product / Video Title" required />
             </div>
             <div class="field-group">
               <label>Price ($ USD - for Store / Lucky Draw / Dolls)</label>
@@ -321,21 +345,40 @@
               <input type="text" id="upPayPal" placeholder="https://www.paypal.com/..." />
             </div>
             <div class="field-group">
-              <label>Google Drive Link (for Video/Photo) OR Upload Photo File</label>
-              <input type="text" id="upDriveUrl" placeholder="Paste Google Drive share link" />
-              <input type="file" id="upPhotoFile" accept="image/*" style="margin-top:6px;" />
+              <label>Available Colors (Comma separated — Optional)</label>
+              <input type="text" id="upColors" placeholder="e.g. Turquoise, Red, Pink, Black, Orange" />
             </div>
             <div class="field-group">
-              <label>YouTube Size Thumbnail (16:9 - Upload or Drive Link)</label>
-              <input type="file" id="upThumbFile" accept="image/*" />
-              <input type="text" id="upThumbUrl" placeholder="Or paste Thumbnail link" style="margin-top:6px;" />
+              <label>Available Sizes (Comma separated — Optional)</label>
+              <input type="text" id="upSizes" placeholder="e.g. S, M, L, XL, XXL, Free Size" />
             </div>
           </div>
+
+          <div class="form-grid" style="margin-top:6px;">
+            <div class="field-group">
+              <label>Upload Unlimited Photos (Any Size — Select 1 or Multiple Angles/Colors)</label>
+              <input type="file" id="upMultiPhotos" accept="image/*" multiple onchange="previewSelectedPhotos(this)" />
+              <div style="font-size:11.5px; color:#9ce0ff;">
+                Note: Select as many photos as you want. If Thumbnail below is left blank, the 1st photo automatically becomes the Thumbnail in its full original size!
+              </div>
+              <div id="multiPreviewBox" class="multi-preview-row"></div>
+            </div>
+
+            <div class="field-group">
+              <label>Google Drive Link (for Video / Photo — Optional)</label>
+              <input type="text" id="upDriveUrl" placeholder="Paste Google Drive share link" />
+              <label style="margin-top:8px;">Custom Thumbnail (Optional — Leave blank for Auto Thumbnail)</label>
+              <input type="file" id="upThumbFile" accept="image/*" />
+              <input type="text" id="upThumbUrl" placeholder="Or paste Thumbnail link (optional)" style="margin-top:6px;" />
+            </div>
+          </div>
+
           <div class="field-group">
             <label>Description / Notes</label>
-            <textarea id="upDesc" rows="2"></textarea>
+            <textarea id="upDesc" rows="2" placeholder="Write product details..."></textarea>
           </div>
-          <button type="submit">Publish Item</button>
+          <button type="submit" id="publishSubmitBtn" style="padding:12px 22px; font-size:14px;">Publish Item</button>
+          <div id="publishProgressText" style="margin-top:8px; font-size:13px; color:#7ee3ff;"></div>
         </form>
 
         <h3 style="font-size:17px; margin:22px 0 10px;">All Uploaded Items (Delete Anytime)</h3>
@@ -416,7 +459,18 @@
       el.textContent = msg;
       el.classList.remove("hidden");
       clearTimeout(window._t);
-      window._t = setTimeout(() => el.classList.add("hidden"), 3500);
+      window._t = setTimeout(() => el.classList.add("hidden"), 4000);
+    }
+
+    function previewSelectedPhotos(input) {
+      const box = document.getElementById("multiPreviewBox");
+      box.innerHTML = "";
+      if (!input.files || !input.files.length) return;
+      Array.from(input.files).forEach(file => {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        box.appendChild(img);
+      });
     }
 
     async function handleAdminLogin(e) {
@@ -476,7 +530,7 @@
     function renderVipTable() {
       const tbody = document.getElementById("vipTableBody");
       tbody.innerHTML = "";
-      (DB_DATA.vipPayments || []).forEach(row => {
+      (DB_DATA.vipPayments || []).slice().reverse().forEach(row => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${esc(row.FolderID)}</td>
@@ -497,7 +551,7 @@
     function renderOrdersTable() {
       const tbody = document.getElementById("ordersTableBody");
       tbody.innerHTML = "";
-      (DB_DATA.orders || []).forEach(row => {
+      (DB_DATA.orders || []).slice().reverse().forEach(row => {
         const addr = `${row.Address || ""}, ${row.City || ""}, ${row.Country || ""}`;
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -521,14 +575,15 @@
     function renderMediaTable() {
       const tbody = document.getElementById("mediaTableBody");
       tbody.innerHTML = "";
-      (DB_DATA.media || []).forEach(item => {
+      (DB_DATA.media || []).slice().reverse().forEach(item => {
+        const previewSrc = item.ThumbnailURL || (item.Type !== "video" ? item.DriveURL : "");
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${esc(item.FolderID)}</td>
           <td>${esc(item.Type)}</td>
           <td>${esc(item.Title)}</td>
           <td>${item.Price ? `$${esc(item.Price)}` : `-`}</td>
-          <td>${item.ThumbnailURL ? `<img class="preview-thumb" src="${esc(item.ThumbnailURL)}" alt="Thumb" />` : `-`}</td>
+          <td>${previewSrc ? `<img class="preview-thumb" src="${esc(previewSrc)}" alt="Preview" />` : `-`}</td>
           <td><button type="button" class="btn-red" onclick="deleteRow('Media', '${esc(item.ID)}')">Delete</button></td>
         `;
         tbody.appendChild(tr);
@@ -562,7 +617,7 @@
     function renderMessagesTable() {
       const tbody = document.getElementById("messagesTableBody");
       tbody.innerHTML = "";
-      (DB_DATA.messages || []).forEach(m => {
+      (DB_DATA.messages || []).slice().reverse().forEach(m => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${esc(m.Name)}</td>
@@ -594,40 +649,97 @@
 
     async function handleAddMedia(e) {
       e.preventDefault();
-      toast("Uploading item...");
+      const btn = document.getElementById("publishSubmitBtn");
+      const progress = document.getElementById("publishProgressText");
+      btn.disabled = true;
 
-      let driveUrl = document.getElementById("upDriveUrl").value.trim();
-      const photoFile = document.getElementById("upPhotoFile").files[0];
-      if (photoFile) {
-        driveUrl = await fileToBase64(photoFile);
+      try {
+        const multiInput = document.getElementById("upMultiPhotos");
+        const multiFiles = multiInput.files ? Array.from(multiInput.files) : [];
+        const uploadedGalleryUrls = [];
+
+        // Upload unlimited selected product/gallery photos to Google Drive
+        for (let i = 0; i < multiFiles.length; i++) {
+          progress.textContent = `Uploading photo ${i + 1} of ${multiFiles.length} to Google Drive...`;
+          toast(`Uploading photo ${i + 1} of ${multiFiles.length}...`);
+          const b64 = await fileToBase64(multiFiles[i]);
+          const upRes = await adminPost({
+            action: "updateSetting",
+            key: "last_gallery_upload",
+            value: b64,
+            isImage: true
+          });
+          if (upRes.status === "success" && upRes.value) {
+            uploadedGalleryUrls.push(upRes.value);
+          }
+        }
+
+        let driveUrl = document.getElementById("upDriveUrl").value.trim();
+        let thumbUrl = document.getElementById("upThumbUrl").value.trim();
+        const thumbFile = document.getElementById("upThumbFile").files[0];
+        if (thumbFile) {
+          progress.textContent = "Uploading custom thumbnail...";
+          thumbUrl = await fileToBase64(thumbFile);
+        }
+
+        // Auto-thumbnail: if no custom thumbnail uploaded, use 1st product photo automatically
+        if (!thumbUrl && uploadedGalleryUrls.length > 0) {
+          thumbUrl = uploadedGalleryUrls[0];
+        }
+        if (!driveUrl && uploadedGalleryUrls.length > 0) {
+          driveUrl = uploadedGalleryUrls[0];
+        }
+
+        const colorsRaw = document.getElementById("upColors").value.trim();
+        const sizesRaw = document.getElementById("upSizes").value.trim();
+        const colorsList = colorsRaw ? colorsRaw.split(",").map(s => s.trim()).filter(Boolean) : [];
+        const sizesList = sizesRaw ? sizesRaw.split(",").map(s => s.trim()).filter(Boolean) : [];
+
+        progress.textContent = "Publishing item to website...";
+        const payload = {
+          action: "addMedia",
+          folderId: document.getElementById("upFolder").value,
+          type: document.getElementById("upType").value,
+          title: document.getElementById("upTitle").value.trim(),
+          price: document.getElementById("upPrice").value.trim(),
+          paypalLink: document.getElementById("upPayPal").value.trim(),
+          driveUrl: driveUrl,
+          thumbnailUrl: thumbUrl,
+          description: document.getElementById("upDesc").value.trim()
+        };
+
+        const res = await adminPost(payload);
+        if (res.status === "success") {
+          // Save unlimited gallery images, colors, and sizes for this product
+          if (res.id && (uploadedGalleryUrls.length > 0 || colorsList.length > 0 || sizesList.length > 0)) {
+            progress.textContent = "Saving gallery photos, colors & sizes...";
+            await adminPost({
+              action: "updateSetting",
+              key: "prod_meta_" + res.id,
+              value: JSON.stringify({
+                images: uploadedGalleryUrls,
+                colors: colorsList,
+                sizes: sizesList
+              }),
+              isImage: false
+            });
+          }
+
+          progress.textContent = "Published successfully!";
+          toast("Published successfully!");
+          e.target.reset();
+          document.getElementById("multiPreviewBox").innerHTML = "";
+          await refreshDashboard();
+        } else {
+          progress.textContent = "Upload error.";
+          toast("Upload error.");
+        }
+      } catch (err) {
+        progress.textContent = "Error: " + err.message;
+        toast("Error uploading item.");
       }
 
-      let thumbUrl = document.getElementById("upThumbUrl").value.trim();
-      const thumbFile = document.getElementById("upThumbFile").files[0];
-      if (thumbFile) {
-        thumbUrl = await fileToBase64(thumbFile);
-      }
-
-      const payload = {
-        action: "addMedia",
-        folderId: document.getElementById("upFolder").value,
-        type: document.getElementById("upType").value,
-        title: document.getElementById("upTitle").value.trim(),
-        price: document.getElementById("upPrice").value.trim(),
-        paypalLink: document.getElementById("upPayPal").value.trim(),
-        driveUrl: driveUrl,
-        thumbnailUrl: thumbUrl,
-        description: document.getElementById("upDesc").value.trim()
-      };
-
-      const res = await adminPost(payload);
-      if (res.status === "success") {
-        toast("Published successfully!");
-        e.target.reset();
-        await refreshDashboard();
-      } else {
-        toast("Upload error.");
-      }
+      btn.disabled = false;
     }
 
     async function approveVip(id) {
@@ -649,6 +761,7 @@
     }
 
     async function deleteRow(sheetName, id) {
+      if (!confirm("Delete this item?")) return;
       toast("Deleting...");
       const res = await adminPost({ action: "deleteItem", sheetName: sheetName, id: id });
       if (res.status === "success") {
