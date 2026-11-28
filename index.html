@@ -127,10 +127,10 @@
       width: 100%; border-radius: 16px; overflow: hidden;
       border: 2px solid rgba(145, 222, 255, 0.7);
       background: rgba(0, 22, 68, 0.65);
-      display: flex; align-items: center; justify-content: center; min-height: 190px;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .hero-photo-frame img { width: 100%; height: auto; max-height: 300px; object-fit: contain; display: block; }
+    .hero-photo-frame img { width: 100%; height: auto; object-fit: contain; display: block; }
     .hero-placeholder { padding: 28px 16px; text-align: center; color: #cceeff; font-size: 14px; }
     .hero-content { display: flex; flex-direction: column; gap: 14px; }
 
@@ -157,7 +157,7 @@
 
     .section-bar-title { font-size: clamp(17px, 2.2vw, 23px); font-weight: 900; display: flex; align-items: center; gap: 8px; }
 
-    .folders-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .folders-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: start; }
 
     .folder-card {
       background: var(--glass-bg); backdrop-filter: blur(12px);
@@ -169,13 +169,15 @@
 
     .folder-card:hover { transform: translateY(-4px); border-color: #ffffff; box-shadow: 0 12px 30px rgba(0, 175, 255, 0.55); }
 
+    /* Full photo support — any size, no cropping */
     .folder-img-wrap {
-      width: 100%; aspect-ratio: 16 / 10; background: rgba(1, 16, 48, 0.85);
+      width: 100%; background: rgba(1, 16, 48, 0.85);
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; border-bottom: 1.5px solid rgba(110, 205, 255, 0.35);
+      min-height: 120px;
     }
 
-    .folder-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .folder-img-wrap img { width: 100%; height: auto; object-fit: contain; display: block; }
 
     .folder-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: space-between; }
     .folder-title { font-size: clamp(14px, 1.5vw, 17px); font-weight: 900; color: #ffffff; text-align: center; }
@@ -194,7 +196,7 @@
       box-shadow: 0 0 16px rgba(255, 255, 255, 0.85);
     }
 
-    .mini-grid { margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 14px; }
+    .mini-grid { margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; align-items: start; }
 
     .mini-card {
       background: var(--glass-bg); border: 1.5px solid var(--glass-border);
@@ -205,12 +207,13 @@
 
     .mini-card:hover { transform: translateY(-3px); border-color: #ffffff; box-shadow: 0 8px 22px rgba(0, 195, 255, 0.5); }
 
+    /* Full photo support — any size, no cropping */
     .mini-thumb {
-      width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
+      width: 100%; border-radius: 10px; overflow: hidden;
       background: #031130; display: flex; align-items: center; justify-content: center;
     }
 
-    .mini-thumb img { width: 100%; height: 100%; object-fit: contain; }
+    .mini-thumb img { width: 100%; height: auto; object-fit: contain; display: block; }
     .mini-title { font-size: 13.5px; font-weight: 800; color: #ffffff; }
     .mini-price { font-size: 14px; color: #7ee3ff; font-weight: 900; }
     .mini-buy-btn { width: 100%; padding: 9px 10px; font-size: 12.5px; font-weight: 900; border-radius: 10px; }
@@ -227,7 +230,7 @@
       background: rgba(0, 20, 60, 0.7); text-align: center;
     }
 
-    .banner-box img { width: 100%; max-height: 280px; object-fit: contain; display: inline-block; }
+    .banner-box img { width: 100%; height: auto; object-fit: contain; display: block; margin: 0 auto; }
 
     .paypal-split {
       display: grid; grid-template-columns: minmax(240px, 380px) 1fr;
@@ -240,7 +243,7 @@
     }
 
     .model-photo-box img {
-      width: 100%; height: auto; max-height: 460px; object-fit: contain;
+      width: 100%; height: auto; object-fit: contain;
       border-radius: 12px; display: block; margin: 0 auto;
     }
 
@@ -248,13 +251,13 @@
     .field-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
     .field-group label { font-size: 13px; color: #d6f1ff; }
 
-    .field-group input, .field-group textarea {
+    .field-group input, .field-group textarea, .field-group select {
       width: 100%; padding: 11px 13px; border-radius: 10px;
       border: 1.5px solid rgba(120, 205, 255, 0.55);
       background: rgba(2, 14, 42, 0.88); color: #ffffff; font-size: 14px; outline: none;
     }
 
-    .media-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
+    .media-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; align-items: start; }
 
     .media-item-card {
       background: rgba(2, 18, 52, 0.82); border: 1.5px solid rgba(115, 200, 255, 0.45);
@@ -264,8 +267,8 @@
     }
 
     .media-item-card:hover { transform: translateY(-3px); border-color: #ffffff; }
-    .media-item-card img.full-photo { width: 100%; height: auto; max-height: 360px; object-fit: contain; border-radius: 10px; background: #010b22; }
-    .media-item-card img.yt-thumb { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; border-radius: 10px; background: #010b22; }
+    .media-item-card img.full-photo { width: 100%; height: auto; object-fit: contain; border-radius: 10px; background: #010b22; display: block; }
+    .media-item-card img.yt-thumb { width: 100%; height: auto; object-fit: contain; border-radius: 10px; background: #010b22; display: block; }
 
     .video-frame-wrap { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000000; border: 1.5px solid rgba(120, 205, 255, 0.6); }
     .video-frame-wrap iframe { width: 100%; height: 100%; border: 0; }
@@ -399,6 +402,45 @@
       <div class="footer-sub">© Sofia Jenny Taborda Official ✓</div>
     </footer>
   </div>
+
+  <!-- Searchable Full Country List -->
+  <datalist id="countriesDatalist">
+    <option value="Afghanistan"></option><option value="Albania"></option><option value="Algeria"></option><option value="Andorra"></option><option value="Angola"></option>
+    <option value="Argentina"></option><option value="Armenia"></option><option value="Australia"></option><option value="Austria"></option><option value="Azerbaijan"></option>
+    <option value="Bahamas"></option><option value="Bahrain"></option><option value="Bangladesh"></option><option value="Barbados"></option><option value="Belarus"></option>
+    <option value="Belgium"></option><option value="Belize"></option><option value="Benin"></option><option value="Bhutan"></option><option value="Bolivia"></option>
+    <option value="Bosnia and Herzegovina"></option><option value="Botswana"></option><option value="Brazil"></option><option value="Brunei"></option><option value="Bulgaria"></option>
+    <option value="Burkina Faso"></option><option value="Burundi"></option><option value="Cambodia"></option><option value="Cameroon"></option><option value="Canada"></option>
+    <option value="Cape Verde"></option><option value="Central African Republic"></option><option value="Chad"></option><option value="Chile"></option><option value="China"></option>
+    <option value="Colombia"></option><option value="Comoros"></option><option value="Congo"></option><option value="Costa Rica"></option><option value="Croatia"></option>
+    <option value="Cuba"></option><option value="Cyprus"></option><option value="Czech Republic"></option><option value="Denmark"></option><option value="Djibouti"></option>
+    <option value="Dominica"></option><option value="Dominican Republic"></option><option value="Ecuador"></option><option value="Egypt"></option><option value="El Salvador"></option>
+    <option value="Equatorial Guinea"></option><option value="Eritrea"></option><option value="Estonia"></option><option value="Eswatini"></option><option value="Ethiopia"></option>
+    <option value="Fiji"></option><option value="Finland"></option><option value="France"></option><option value="Gabon"></option><option value="Gambia"></option>
+    <option value="Georgia"></option><option value="Germany"></option><option value="Ghana"></option><option value="Greece"></option><option value="Grenada"></option>
+    <option value="Guatemala"></option><option value="Guinea"></option><option value="Guyana"></option><option value="Haiti"></option><option value="Honduras"></option>
+    <option value="Hungary"></option><option value="Iceland"></option><option value="India"></option><option value="Indonesia"></option><option value="Iran"></option>
+    <option value="Iraq"></option><option value="Ireland"></option><option value="Israel"></option><option value="Italy"></option><option value="Jamaica"></option>
+    <option value="Japan"></option><option value="Jordan"></option><option value="Kazakhstan"></option><option value="Kenya"></option><option value="Kuwait"></option>
+    <option value="Kyrgyzstan"></option><option value="Laos"></option><option value="Latvia"></option><option value="Lebanon"></option><option value="Lesotho"></option>
+    <option value="Liberia"></option><option value="Libya"></option><option value="Liechtenstein"></option><option value="Lithuania"></option><option value="Luxembourg"></option>
+    <option value="Madagascar"></option><option value="Malawi"></option><option value="Malaysia"></option><option value="Maldives"></option><option value="Mali"></option>
+    <option value="Malta"></option><option value="Mauritania"></option><option value="Mauritius"></option><option value="Mexico"></option><option value="Moldova"></option>
+    <option value="Monaco"></option><option value="Mongolia"></option><option value="Montenegro"></option><option value="Morocco"></option><option value="Mozambique"></option>
+    <option value="Myanmar"></option><option value="Namibia"></option><option value="Nepal"></option><option value="Netherlands"></option><option value="New Zealand"></option>
+    <option value="Nicaragua"></option><option value="Niger"></option><option value="Nigeria"></option><option value="North Korea"></option><option value="North Macedonia"></option>
+    <option value="Norway"></option><option value="Oman"></option><option value="Pakistan"></option><option value="Palestine"></option><option value="Panama"></option>
+    <option value="Papua New Guinea"></option><option value="Paraguay"></option><option value="Peru"></option><option value="Philippines"></option><option value="Poland"></option>
+    <option value="Portugal"></option><option value="Qatar"></option><option value="Romania"></option><option value="Russia"></option><option value="Rwanda"></option>
+    <option value="Saudi Arabia"></option><option value="Senegal"></option><option value="Serbia"></option><option value="Seychelles"></option><option value="Sierra Leone"></option>
+    <option value="Singapore"></option><option value="Slovakia"></option><option value="Slovenia"></option><option value="Somalia"></option><option value="South Africa"></option>
+    <option value="South Korea"></option><option value="South Sudan"></option><option value="Spain"></option><option value="Sri Lanka"></option><option value="Sudan"></option>
+    <option value="Suriname"></option><option value="Sweden"></option><option value="Switzerland"></option><option value="Syria"></option><option value="Taiwan"></option>
+    <option value="Tajikistan"></option><option value="Tanzania"></option><option value="Thailand"></option><option value="Togo"></option><option value="Trinidad and Tobago"></option>
+    <option value="Tunisia"></option><option value="Turkey"></option><option value="Turkmenistan"></option><option value="Uganda"></option><option value="Ukraine"></option>
+    <option value="United Arab Emirates"></option><option value="United Kingdom"></option><option value="United States"></option><option value="Uruguay"></option><option value="Uzbekistan"></option>
+    <option value="Venezuela"></option><option value="Vietnam"></option><option value="Yemen"></option><option value="Zambia"></option><option value="Zimbabwe"></option>
+  </datalist>
 
   <script>
     const BACKEND_URL = "https://script.google.com/macros/s/AKfycbw1S3rKmIHA0KUC4hjC9qPc1PykcMsY96_qnKDb94fTlzEHU8aNnniXfTn_yipz112PJA/exec";
@@ -700,17 +742,8 @@
         const card = document.createElement("div");
         card.className = "mini-card";
         const priceLabel = item.Price ? `$${escapeHtml(item.Price)} USD` : "";
-        const directPayPalUrl = (item.PayPalLink && String(item.PayPalLink).trim()) ? String(item.PayPalLink).trim() : "";
 
-        const handleItemAction = () => {
-          if (directPayPalUrl) {
-            window.open(directPayPalUrl, "_blank", "noopener");
-          } else {
-            openFolderAndProduct(item.FolderID, item.Title);
-          }
-        };
-
-        card.onclick = handleItemAction;
+        card.onclick = () => openFolderAndProduct(item.FolderID, item.Title);
         card.innerHTML = `
           <div class="mini-thumb">
             ${item.ThumbnailURL ? `<img src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : `<span>✨</span>`}
@@ -718,7 +751,7 @@
           <div class="mini-title">${escapeHtml(item.Title)}</div>
           ${priceLabel ? `<div class="mini-price">${priceLabel}</div>` : ``}
           <button type="button" class="mini-buy-btn">
-            ${priceLabel ? `💳 Buy Now — ${priceLabel}` : (directPayPalUrl ? `💳 Pay with PayPal` : t("open_folder"))}
+            ${priceLabel ? `🛒 Buy Now — ${priceLabel}` : t("open_folder")}
           </button>
         `;
         grid.appendChild(card);
@@ -968,27 +1001,18 @@
         html += `<div class="media-gallery-grid">`;
         items.forEach((item, idx) => {
           const itemPrice = escapeHtml(item.Price || "10");
-          const directLink = (item.PayPalLink && String(item.PayPalLink).trim()) ? String(item.PayPalLink).trim() : "";
-          const clickAction = directLink
-            ? `window.open('${escapeAttr(directLink)}', '_blank', 'noopener')`
-            : `openOrderCheckout(${idx}, '${folder.id}')`;
 
           html += `
-            <div class="media-item-card" onclick="${clickAction}">
+            <div class="media-item-card" onclick="openOrderCheckout(${idx}, '${folder.id}')">
               <div>
                 ${item.ThumbnailURL ? `<img class="yt-thumb" src="${escapeAttr(item.ThumbnailURL)}" alt="${escapeAttr(item.Title)}" />` : ``}
                 <div class="mini-title" style="margin-top:8px;">${escapeHtml(item.Title)}</div>
                 <div class="mini-price" style="margin-top:4px;">$${itemPrice} USD</div>
                 ${item.Description ? `<p style="font-size:13px; color:#d8efff; margin-top:4px;">${escapeHtml(item.Description)}</p>` : ``}
               </div>
-              <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
-                ${directLink ? `
-                  <a href="${escapeAttr(directLink)}" target="_blank" rel="noopener" onclick="event.stopPropagation();" style="text-decoration:none; display:block;">
-                    <button type="button" style="width:100%;">💳 Pay Now via PayPal ($${itemPrice} USD)</button>
-                  </a>
-                ` : ``}
+              <div style="margin-top:8px;">
                 <button type="button" onclick="event.stopPropagation(); openOrderCheckout(${idx}, '${folder.id}')" style="width:100%;">
-                  🛒 Order &amp; Checkout ($${itemPrice} USD)
+                  🛒 Buy Now ($${itemPrice} USD)
                 </button>
               </div>
             </div>
@@ -1007,7 +1031,7 @@
       const item = items[index];
       if (!item) return;
 
-      const modelPhoto = SITE_SETTINGS[folder.modelKey] || item.ThumbnailURL || "";
+      const productPhoto = item.ThumbnailURL || SITE_SETTINGS[folder.modelKey] || "";
       const paypalUrl = getPayPalLink(folder, item.PayPalLink);
       const itemPrice = escapeHtml(item.Price || "10");
 
@@ -1016,28 +1040,40 @@
           <h3 style="font-size:20px; margin-bottom:14px;">${escapeHtml(item.Title)} — $${itemPrice} USD</h3>
           <div class="paypal-split">
             <div class="model-photo-box">
-              ${modelPhoto ? `<img src="${escapeAttr(modelPhoto)}" alt="Model / Product" />` : ``}
+              ${productPhoto ? `<img src="${escapeAttr(productPhoto)}" alt="Product Photo" />` : ``}
             </div>
             <div>
-              <div style="margin-bottom:14px;">
-                <a href="${escapeAttr(paypalUrl)}" target="_blank" rel="noopener" style="display:block; text-decoration:none;">
-                  <button type="button" style="width:100%; padding:15px; font-size:16px;">${t("pay_paypal_card")} ($${itemPrice} USD)</button>
-                </a>
-              </div>
-
-              <form onsubmit="submitOrderForm(event, '${folder.id}', '${escapeAttr(item.Title)}', '${itemPrice}')">
+              <form onsubmit="submitOrderAndPay(event, '${folder.id}', '${escapeAttr(item.Title)}', '${itemPrice}', '${escapeAttr(paypalUrl)}')">
                 <div class="form-grid">
-                  <div class="field-group"><label>Full Name</label><input type="text" id="ordName" required /></div>
-                  <div class="field-group"><label>Gmail</label><input type="email" id="ordGmail" required /></div>
-                  <div class="field-group"><label>WhatsApp / Mobile Number</label><input type="text" id="ordPhone" required /></div>
-                  <div class="field-group"><label>Country</label><input type="text" id="ordCountry" required /></div>
-                  <div class="field-group"><label>City</label><input type="text" id="ordCity" required /></div>
-                  <div class="field-group"><label>Home / Office / Shop / Company Address</label><input type="text" id="ordAddress" required /></div>
-                  <div class="field-group"><label>Payment / Transaction ID</label><input type="text" id="ordTxId" required /></div>
-                  <div class="field-group"><label>Payment Screenshot</label><input type="file" id="ordScreenshot" accept="image/*" required /></div>
+                  <div class="field-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="ordName" placeholder="Enter your full name" required />
+                  </div>
+                  <div class="field-group">
+                    <label>Gmail *</label>
+                    <input type="email" id="ordGmail" placeholder="example@gmail.com" required />
+                  </div>
+                  <div class="field-group">
+                    <label>WhatsApp Number *</label>
+                    <input type="text" id="ordPhone" placeholder="+1 / +92 ..." required />
+                  </div>
+                  <div class="field-group">
+                    <label>Country (Type to Search &amp; Select) *</label>
+                    <input type="text" id="ordCountry" list="countriesDatalist" placeholder="Search country..." autocomplete="off" required />
+                  </div>
+                  <div class="field-group">
+                    <label>City *</label>
+                    <input type="text" id="ordCity" placeholder="Enter your city" required />
+                  </div>
+                  <div class="field-group">
+                    <label>Complete Home Address *</label>
+                    <input type="text" id="ordAddress" placeholder="House, Street, Area, Postal Code" required />
+                  </div>
                 </div>
 
-                <button type="submit" style="width:100%; margin-top:10px;">${t("submit_proof")}</button>
+                <button type="submit" id="singleBuyNowBtn" style="width:100%; margin-top:14px; padding:16px; font-size:17px;">
+                  💳 Buy Now — $${itemPrice} USD (PayPal)
+                </button>
               </form>
             </div>
           </div>
@@ -1046,11 +1082,13 @@
       document.getElementById("checkoutArea").scrollIntoView({ behavior: "smooth" });
     }
 
-    async function submitOrderForm(e, folderId, productTitle, price) {
+    async function submitOrderAndPay(e, folderId, productTitle, price, paypalUrl) {
       e.preventDefault();
-      const file = document.getElementById("ordScreenshot").files[0];
-      const base64 = file ? await fileToBase64(file) : "";
-      showStatus("Sending order to Admin Dashboard...");
+      const btn = document.getElementById("singleBuyNowBtn");
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Saving Order & Opening PayPal...";
+      }
 
       const payload = {
         action: "submitOrder",
@@ -1063,16 +1101,33 @@
         country: document.getElementById("ordCountry").value.trim(),
         city: document.getElementById("ordCity").value.trim(),
         address: document.getElementById("ordAddress").value.trim(),
-        txId: document.getElementById("ordTxId").value.trim(),
-        screenshot: base64
+        txId: "PayPal Checkout Opened",
+        screenshot: ""
       };
 
-      const res = await postToBackend(payload);
-      if (res.status === "success") {
-        showStatus("Order received! Once approved, your PDF receipt and delivery notice will be sent to your Gmail.");
-        e.target.reset();
-      } else {
-        showStatus("Error submitting order.");
+      // Open PayPal immediately on user click so browser never blocks it
+      window.open(paypalUrl, "_blank", "noopener");
+      showStatus("Order saved to Admin Dashboard! Complete your payment on PayPal.");
+
+      try {
+        await postToBackend(payload);
+      } catch (err) {
+        // Fallback keepalive send
+        try {
+          fetch(BACKEND_URL, {
+            method: "POST",
+            mode: "no-cors",
+            keepalive: true,
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+          });
+        } catch (e2) {}
+      }
+
+      e.target.reset();
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = `💳 Buy Now — $${price} USD (PayPal)`;
       }
     }
 
