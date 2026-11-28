@@ -712,7 +712,6 @@
         }
       } catch (e) {}
 
-      // Combine Thumbnail + Gallery + DriveURL (if image) without duplicates
       const combined = [];
       const addUnique = (url) => {
         if (url && String(url).trim() && !combined.includes(url)) combined.push(url);
@@ -762,6 +761,21 @@
       } catch (e) {
         renderFoldersGrid();
         renderMiniUploads();
+      }
+      openFolderFromUrl();
+    }
+
+    function openFolderFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const folderParam = params.get("folder");
+      const productParam = params.get("product");
+      if (folderParam) {
+        openFolder(folderParam);
+        if (productParam) {
+          const items = PUBLIC_MEDIA.filter(m => m.FolderID === folderParam);
+          const idx = items.findIndex(m => m.ID === productParam || m.Title === productParam);
+          if (idx >= 0) setTimeout(() => openOrderCheckout(idx, folderParam), 80);
+        }
       }
     }
 
@@ -846,6 +860,12 @@
       ACTIVE_FOLDER = null;
       document.getElementById("innerView").classList.add("hidden");
       document.getElementById("homeView").classList.remove("hidden");
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("folder");
+        url.searchParams.delete("product");
+        window.history.replaceState({}, "", url.toString());
+      } catch (e) {}
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -860,6 +880,12 @@
       const folder = FOLDERS_CONFIG.find(f => f.id === folderId);
       if (!folder) return;
       ACTIVE_FOLDER = folder;
+
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set("folder", folderId);
+        window.history.replaceState({}, "", url.toString());
+      } catch (e) {}
 
       document.getElementById("homeView").classList.add("hidden");
       const innerView = document.getElementById("innerView");
@@ -1269,7 +1295,6 @@
         screenshot: ""
       };
 
-      // Open PayPal immediately on user click so browser never blocks it
       window.open(paypalUrl, "_blank", "noopener");
       showStatus("Order saved to Admin Dashboard! Complete your payment on PayPal.");
 
